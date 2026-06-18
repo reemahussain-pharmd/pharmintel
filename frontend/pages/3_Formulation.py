@@ -2,9 +2,12 @@
 # Purpose: Formulation feasibility dashboard — bar chart, scores, Gemini reasoning
 # Connects to: backend POST /api/v1/formulation, session_state from 1_Search and 2_Analysis
 
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+
 import streamlit as st
 import requests
-import os
 from dotenv import load_dotenv
 from frontend.components.sidebar import render_sidebar
 

@@ -2,9 +2,12 @@
 # Purpose: Indian Market Intelligence dashboard — brands, gaps, regulatory context, Gemini insight
 # Connects to: backend POST /api/v1/market
 
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+
 import streamlit as st
 import requests
-import os
 import pandas as pd
 from dotenv import load_dotenv
 from frontend.components.sidebar import render_sidebar

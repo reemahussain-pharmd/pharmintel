@@ -2,10 +2,13 @@
 # Purpose: PDF report generation UI — assembles all session data and requests PDF from backend
 # Connects to: backend POST /api/v1/report
 
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+
 import streamlit as st
 import requests
 import base64
-import os
 from dotenv import load_dotenv
 from frontend.components.sidebar import render_sidebar
 

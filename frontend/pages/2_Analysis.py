@@ -2,9 +2,12 @@
 # Purpose: NLP entity extraction page — color-coded pharmaceutical entity tags per paper
 # Connects to: backend POST /api/v1/analysis, session_state from 1_Search.py
 
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+
 import streamlit as st
 import requests
-import os
 from dotenv import load_dotenv
 from frontend.components.sidebar import render_sidebar
 

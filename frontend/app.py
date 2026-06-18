@@ -2,9 +2,13 @@
 # Purpose: PharmIntel home page — hero, pipeline visual, feature cards, API status
 # Connects to: backend main.py (health check), all frontend pages via sidebar
 
+import sys
+import os
+# Ensure repo root is in path so 'frontend.components' can be found on Streamlit Cloud
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import streamlit as st
 import requests
-import os
 from dotenv import load_dotenv
 from frontend.components.sidebar import render_sidebar
 

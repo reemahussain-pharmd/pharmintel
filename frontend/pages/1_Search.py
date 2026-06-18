@@ -2,9 +2,12 @@
 # Purpose: PubMed literature search page — input, results table, search history
 # Connects to: backend POST /api/v1/search, GET /api/v1/searches/recent
 
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+
 import streamlit as st
 import requests
-import os
 import pandas as pd
 from datetime import datetime
 from dotenv import load_dotenv

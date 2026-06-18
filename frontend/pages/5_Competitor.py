@@ -2,10 +2,13 @@
 # Purpose: Competitor Intelligence dashboard — brands table, gap analysis, Gemini summary
 # Connects to: backend POST /api/v1/competitor
 
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+
 import streamlit as st
 import requests
 import pandas as pd
-import os
 from dotenv import load_dotenv
 from frontend.components.sidebar import render_sidebar
 
