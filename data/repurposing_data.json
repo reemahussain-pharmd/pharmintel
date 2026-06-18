@@ -1,0 +1,355 @@
+{
+  "metformin": {
+    "primary_indication": "Type 2 Diabetes Mellitus",
+    "drug_class": "Biguanide / AMPK Activator",
+    "repurposing_opportunities": [
+      {
+        "new_indication": "Cancer Chemoprevention",
+        "target_cancers": ["Breast cancer", "Colorectal cancer", "Pancreatic cancer"],
+        "mechanism": "AMPK activation → mTOR inhibition → reduced cancer cell proliferation",
+        "evidence_level": "High",
+        "clinical_stage": "Phase II/III",
+        "key_finding": "Diabetic patients on metformin show 30% lower cancer incidence in observational studies",
+        "opportunity_score": 85
+      },
+      {
+        "new_indication": "Polycystic Ovary Syndrome (PCOS)",
+        "mechanism": "Insulin sensitization → reduced androgen production",
+        "evidence_level": "High",
+        "clinical_stage": "Approved (off-label widely used)",
+        "key_finding": "Restores ovulation in 50-60% of PCOS patients",
+        "opportunity_score": 90
+      },
+      {
+        "new_indication": "Non-Alcoholic Fatty Liver Disease (NAFLD)",
+        "mechanism": "AMPK activation → reduced hepatic lipogenesis",
+        "evidence_level": "Medium",
+        "clinical_stage": "Phase II",
+        "key_finding": "Significant reduction in liver enzyme levels in T2DM-NAFLD patients",
+        "opportunity_score": 72
+      },
+      {
+        "new_indication": "Alzheimer's Disease",
+        "mechanism": "Improved insulin signalling in brain → reduced tau phosphorylation",
+        "evidence_level": "Medium",
+        "clinical_stage": "Phase II",
+        "key_finding": "Epidemiological evidence of lower dementia risk in metformin users",
+        "opportunity_score": 65
+      }
+    ],
+    "overall_repurposing_score": 82,
+    "india_market_relevance": "High — PCOS and cancer indications have large Indian patient populations"
+  },
+  "amlodipine": {
+    "primary_indication": "Hypertension / Angina",
+    "drug_class": "Calcium Channel Blocker (Dihydropyridine)",
+    "repurposing_opportunities": [
+      {
+        "new_indication": "Raynaud's Phenomenon",
+        "mechanism": "Vasodilation of peripheral vessels → reduced vasospasm",
+        "evidence_level": "High",
+        "clinical_stage": "Used in practice (off-label)",
+        "key_finding": "Reduces frequency and severity of Raynaud's attacks",
+        "opportunity_score": 80
+      },
+      {
+        "new_indication": "Pulmonary Arterial Hypertension (PAH)",
+        "mechanism": "Vasodilation of pulmonary vasculature in vasoreactive patients",
+        "evidence_level": "Medium",
+        "clinical_stage": "Selective use in clinical practice",
+        "key_finding": "Effective in the ~10% of PAH patients who are vasoreactive on testing",
+        "opportunity_score": 60
+      },
+      {
+        "new_indication": "Subarachnoid Haemorrhage (cerebral vasospasm prevention)",
+        "mechanism": "Calcium channel blockade → prevents cerebral vasospasm",
+        "evidence_level": "Medium",
+        "clinical_stage": "Phase II",
+        "key_finding": "Nimodipine (similar class) already approved; amlodipine being explored",
+        "opportunity_score": 55
+      }
+    ],
+    "overall_repurposing_score": 65,
+    "india_market_relevance": "Medium — Raynaud's uncommon in India; PAH niche market"
+  },
+  "atorvastatin": {
+    "primary_indication": "Hypercholesterolemia / Cardiovascular Risk Reduction",
+    "drug_class": "HMG-CoA Reductase Inhibitor (Statin)",
+    "repurposing_opportunities": [
+      {
+        "new_indication": "Sepsis / Critical Illness",
+        "mechanism": "Anti-inflammatory and immunomodulatory pleiotropic effects",
+        "evidence_level": "Medium",
+        "clinical_stage": "Phase III (mixed results)",
+        "key_finding": "Pleiotropic anti-inflammatory effects independent of LDL lowering",
+        "opportunity_score": 58
+      },
+      {
+        "new_indication": "Multiple Sclerosis (neuroprotection)",
+        "mechanism": "Immunomodulation + neuroprotection via anti-inflammatory pathways",
+        "evidence_level": "Medium",
+        "clinical_stage": "Phase II",
+        "key_finding": "MS-STAT trial showed slowing of brain atrophy with high-dose simvastatin",
+        "opportunity_score": 62
+      },
+      {
+        "new_indication": "COVID-19 / Viral Pneumonia",
+        "mechanism": "Anti-inflammatory, anti-thrombotic, antiviral properties",
+        "evidence_level": "Medium",
+        "clinical_stage": "Post-pandemic observational data",
+        "key_finding": "Statin use associated with reduced COVID-19 severity in multiple cohort studies",
+        "opportunity_score": 68
+      },
+      {
+        "new_indication": "Bone Loss / Osteoporosis Prevention",
+        "mechanism": "Promotes osteoblast activity via mevalonate pathway inhibition",
+        "evidence_level": "Low",
+        "clinical_stage": "Preclinical / Early Phase I",
+        "key_finding": "Animal studies show increased bone mineral density",
+        "opportunity_score": 40
+      }
+    ],
+    "overall_repurposing_score": 62,
+    "india_market_relevance": "Medium — COVID and MS indications relevant; bone density in aging population"
+  },
+  "omeprazole": {
+    "primary_indication": "Gastroesophageal Reflux Disease / Peptic Ulcer",
+    "drug_class": "Proton Pump Inhibitor",
+    "repurposing_opportunities": [
+      {
+        "new_indication": "H. pylori Eradication Enhancement",
+        "mechanism": "Acid suppression improves antibiotic efficacy at gastric pH",
+        "evidence_level": "High",
+        "clinical_stage": "Standard practice (triple/quadruple therapy)",
+        "key_finding": "Essential component of H. pylori eradication regimens worldwide",
+        "opportunity_score": 88
+      },
+      {
+        "new_indication": "Barrett's Oesophagus Chemoprevention",
+        "mechanism": "Sustained acid suppression → reduced metaplasia progression",
+        "evidence_level": "Medium",
+        "clinical_stage": "Phase III (AspECT trial)",
+        "key_finding": "High-dose PPI + aspirin reduced neoplastic progression in Barrett's",
+        "opportunity_score": 70
+      },
+      {
+        "new_indication": "Drug-Induced GI Protection",
+        "mechanism": "Acid suppression protects gastric mucosa from NSAID/steroid damage",
+        "evidence_level": "High",
+        "clinical_stage": "Standard co-prescribing practice",
+        "key_finding": "Reduces NSAID-induced ulcer incidence by >80%",
+        "opportunity_score": 85
+      }
+    ],
+    "overall_repurposing_score": 81,
+    "india_market_relevance": "Very High — H. pylori prevalence >70% in India; NSAID co-prescription very common"
+  },
+  "lisinopril": {
+    "primary_indication": "Hypertension / Heart Failure",
+    "drug_class": "ACE Inhibitor",
+    "repurposing_opportunities": [
+      {
+        "new_indication": "Diabetic Nephropathy",
+        "mechanism": "Reduces intraglomerular pressure → slows CKD progression",
+        "evidence_level": "High",
+        "clinical_stage": "Standard of care (guideline-recommended)",
+        "key_finding": "Reduces proteinuria and slows GFR decline in diabetic patients",
+        "opportunity_score": 92
+      },
+      {
+        "new_indication": "Migraine Prophylaxis",
+        "mechanism": "RAAS modulation in CNS → reduced migraine frequency",
+        "evidence_level": "Medium",
+        "clinical_stage": "Small RCTs (positive results)",
+        "key_finding": "Lisinopril reduced migraine frequency by 50% in placebo-controlled trial",
+        "opportunity_score": 68
+      },
+      {
+        "new_indication": "Scleroderma Renal Crisis",
+        "mechanism": "RAAS blockade in severe systemic sclerosis",
+        "evidence_level": "High",
+        "clinical_stage": "Standard of care",
+        "key_finding": "ACE inhibitors are first-line treatment for scleroderma renal crisis",
+        "opportunity_score": 85
+      }
+    ],
+    "overall_repurposing_score": 78,
+    "india_market_relevance": "High — Diabetic nephropathy burden is enormous in India"
+  },
+  "paracetamol": {
+    "primary_indication": "Pain / Fever",
+    "drug_class": "Analgesic / Antipyretic",
+    "repurposing_opportunities": [
+      {
+        "new_indication": "Patent Ductus Arteriosus (PDA) Closure",
+        "mechanism": "Prostaglandin synthesis inhibition (alternative to indomethacin/ibuprofen)",
+        "evidence_level": "Medium",
+        "clinical_stage": "Phase III",
+        "key_finding": "IV/oral paracetamol effective in closing PDA in premature infants with better safety profile",
+        "opportunity_score": 72
+      },
+      {
+        "new_indication": "Postoperative Opioid Reduction",
+        "mechanism": "Synergistic analgesia reduces opioid requirements by 20-30%",
+        "evidence_level": "High",
+        "clinical_stage": "Standard multimodal analgesia protocol",
+        "key_finding": "IV paracetamol reduces morphine consumption in post-surgical patients",
+        "opportunity_score": 82
+      },
+      {
+        "new_indication": "Agitation in ICU Patients",
+        "mechanism": "Fever reduction → reduces delirium from hyperthermia",
+        "evidence_level": "Low",
+        "clinical_stage": "Exploratory",
+        "key_finding": "Fever control may reduce ICU delirium incidence",
+        "opportunity_score": 45
+      }
+    ],
+    "overall_repurposing_score": 68,
+    "india_market_relevance": "High — PDA is significant neonatal concern; IV paracetamol growing in Indian ICUs"
+  },
+  "azithromycin": {
+    "primary_indication": "Bacterial Infections (respiratory, STIs)",
+    "drug_class": "Macrolide Antibiotic",
+    "repurposing_opportunities": [
+      {
+        "new_indication": "Cystic Fibrosis (anti-inflammatory)",
+        "mechanism": "Anti-inflammatory properties independent of antibiotic effect",
+        "evidence_level": "High",
+        "clinical_stage": "Approved for long-term prophylaxis in CF",
+        "key_finding": "Reduces pulmonary exacerbations in CF patients by 40%",
+        "opportunity_score": 85
+      },
+      {
+        "new_indication": "Bronchiectasis Management",
+        "mechanism": "Immunomodulatory + antibiofilm effects in chronic lung disease",
+        "evidence_level": "High",
+        "clinical_stage": "Used in practice per guidelines",
+        "key_finding": "Long-term azithromycin reduces exacerbations in non-CF bronchiectasis",
+        "opportunity_score": 80
+      },
+      {
+        "new_indication": "Rosacea Treatment",
+        "mechanism": "Anti-inflammatory effects on skin microbiome",
+        "evidence_level": "Medium",
+        "clinical_stage": "Used off-label / small trials",
+        "key_finding": "Comparable to doxycycline in some rosacea trials",
+        "opportunity_score": 60
+      },
+      {
+        "new_indication": "Malaria Combination Therapy",
+        "mechanism": "Anti-malarial activity; synergy with chloroquine/quinine",
+        "evidence_level": "Medium",
+        "clinical_stage": "Phase II (paediatric malaria)",
+        "key_finding": "Azithromycin + chloroquine effective for P. vivax malaria",
+        "opportunity_score": 65
+      }
+    ],
+    "overall_repurposing_score": 72,
+    "india_market_relevance": "High — CF rare but bronchiectasis common; malaria relevant in endemic Indian regions"
+  },
+  "pantoprazole": {
+    "primary_indication": "Gastroesophageal Reflux / Peptic Ulcer",
+    "drug_class": "Proton Pump Inhibitor",
+    "repurposing_opportunities": [
+      {
+        "new_indication": "Stress Ulcer Prophylaxis in ICU",
+        "mechanism": "Acid suppression prevents stress-induced GI bleeding",
+        "evidence_level": "High",
+        "clinical_stage": "Standard ICU practice",
+        "key_finding": "Reduces stress ulcer bleeding in mechanically ventilated patients",
+        "opportunity_score": 88
+      },
+      {
+        "new_indication": "Zollinger-Ellison Syndrome",
+        "mechanism": "Potent acid suppression for gastrin-secreting tumour management",
+        "evidence_level": "High",
+        "clinical_stage": "Approved indication",
+        "key_finding": "Controls hypersecretion in Zollinger-Ellison syndrome effectively",
+        "opportunity_score": 90
+      },
+      {
+        "new_indication": "Eosinophilic Oesophagitis",
+        "mechanism": "Acid-suppressive mechanism may independently reduce eosinophil infiltration",
+        "evidence_level": "Medium",
+        "clinical_stage": "Phase II",
+        "key_finding": "PPI-responsive EoE subset identified — histological remission in ~35%",
+        "opportunity_score": 65
+      }
+    ],
+    "overall_repurposing_score": 80,
+    "india_market_relevance": "Very High — ICU stress ulcer prophylaxis and H. pylori dual role highly relevant"
+  },
+  "cetirizine": {
+    "primary_indication": "Allergic Rhinitis / Urticaria",
+    "drug_class": "Second-Generation H1 Antihistamine",
+    "repurposing_opportunities": [
+      {
+        "new_indication": "Atopic Dermatitis (adjunct therapy)",
+        "mechanism": "H1 blockade reduces pruritus-itch cycle",
+        "evidence_level": "Medium",
+        "clinical_stage": "Used in practice",
+        "key_finding": "Reduces itch scores in atopic dermatitis; ETAC study showed possible preventive effect",
+        "opportunity_score": 72
+      },
+      {
+        "new_indication": "Chronic Spontaneous Urticaria (high-dose)",
+        "mechanism": "Uptitraton to 4x standard dose shows additional benefit",
+        "evidence_level": "High",
+        "clinical_stage": "Guideline-recommended step-up approach",
+        "key_finding": "High-dose cetirizine effective in antihistamine-refractory urticaria",
+        "opportunity_score": 85
+      },
+      {
+        "new_indication": "COVID-19 Symptom Relief (histamine hypothesis)",
+        "mechanism": "H1/H2 antagonism may modulate COVID-19 cytokine response",
+        "evidence_level": "Low",
+        "clinical_stage": "Observational only",
+        "key_finding": "Small observational studies suggest reduced COVID-19 severity; requires RCT",
+        "opportunity_score": 40
+      }
+    ],
+    "overall_repurposing_score": 66,
+    "india_market_relevance": "High — Atopic dermatitis and urticaria burden significant in Indian population"
+  },
+  "rosuvastatin": {
+    "primary_indication": "Hypercholesterolaemia / Cardiovascular Risk",
+    "drug_class": "HMG-CoA Reductase Inhibitor (High-Intensity Statin)",
+    "repurposing_opportunities": [
+      {
+        "new_indication": "Primary Prevention in Low-Risk Individuals (JUPITER trial)",
+        "mechanism": "LDL + CRP reduction in individuals with elevated hsCRP",
+        "evidence_level": "High",
+        "clinical_stage": "Approved/guideline-supported",
+        "key_finding": "JUPITER trial: 44% reduction in cardiovascular events in elevated hsCRP patients",
+        "opportunity_score": 90
+      },
+      {
+        "new_indication": "Acute Kidney Injury (AKI) Prevention",
+        "mechanism": "Anti-inflammatory and antioxidant effects on renal tubules",
+        "evidence_level": "Medium",
+        "clinical_stage": "Phase II",
+        "key_finding": "Reduces contrast-induced nephropathy in high-risk patients",
+        "opportunity_score": 68
+      },
+      {
+        "new_indication": "Heart Failure with Preserved Ejection Fraction (HFpEF)",
+        "mechanism": "Pleiotropic anti-fibrotic effects on myocardium",
+        "evidence_level": "Medium",
+        "clinical_stage": "Phase III (CORONA trial — negative for systolic HF)",
+        "key_finding": "Ongoing investigation for HFpEF subgroup which may differ from systolic HF",
+        "opportunity_score": 55
+      },
+      {
+        "new_indication": "Familial Hypercholesterolaemia in Children",
+        "mechanism": "Potent LDL reduction in paediatric patients",
+        "evidence_level": "High",
+        "clinical_stage": "Approved (age 8+)",
+        "key_finding": "Safe and effective in paediatric FH; approved by FDA for ages 8+",
+        "opportunity_score": 82
+      }
+    ],
+    "overall_repurposing_score": 74,
+    "india_market_relevance": "High — FH under-diagnosed in India; AKI prevention relevant in contrast-heavy cardiac cath labs"
+  }
+}

@@ -29,5 +29,8 @@ pydantic
 httpx
 requests
 
+# Interactive Charts
+plotly
+
 # Utilities
 python-multipart

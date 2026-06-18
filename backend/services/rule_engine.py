@@ -7,7 +7,7 @@
 import json
 import os
 import re
-from backend.models.schemas import PaperAnalysis, FormulationScore, Paper
+from backend.models.schemas import PaperAnalysis, FormulationScore, Paper, ScoreComponents
 
 _BASE = os.path.join(os.path.dirname(__file__), "..", "..", "data")
 
@@ -103,13 +103,21 @@ def score_dosage_forms(
         # Only include forms with a meaningful score or literature mention
         if final_score > 0 or mentions > 0:
             color = _score_to_color(final_score)
+            components = ScoreComponents(
+                base=round(base, 1),
+                literature_frequency=round(frequency_score, 1),
+                score_boosters=round(booster_score, 1),
+                excipient_compatibility=round(excipient_score, 1),
+                penalty=round(penalty, 1),
+            )
             scores.append(
                 FormulationScore(
                     dosage_form=form_name,
                     score=final_score,
-                    reasoning="",           # filled in by Gemini in formulation.py
+                    reasoning="",
                     frequency=mentions,
                     color=color,
+                    components=components,
                 )
             )
 

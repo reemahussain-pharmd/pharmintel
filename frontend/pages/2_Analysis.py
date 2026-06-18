@@ -1,69 +1,37 @@
-# File: frontend/pages/2_Analysis.py
-# Purpose: NLP entity extraction page — color-coded pharmaceutical entity tags per paper
-# Connects to: backend POST /api/v1/analysis, session_state from 1_Search.py
-
 import sys
 import os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 import streamlit as st
 import requests
+import pandas as pd
+import plotly.express as px
+import plotly.graph_objects as go
 from dotenv import load_dotenv
 from frontend.components.sidebar import render_sidebar
 
 load_dotenv()
-
 BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8000")
 
-st.set_page_config(
-    page_title="NLP Analysis — PharmIntel",
-    page_icon="🧬",
-    layout="wide",
-)
-
+st.set_page_config(page_title="NLP Analysis — PharmIntel", page_icon="🧬", layout="wide")
 render_sidebar()
 
-st.title("🧬 NLP Entity Extraction")
-st.markdown(
-    "spaCy scans each paper abstract and extracts pharmaceutical entities — "
-    "dosage forms, excipients, stability conditions, and development stage keywords."
-)
-
-# ── Legend ────────────────────────────────────────────────────────────────────
-st.markdown(
-    """
-    <div style='display:flex; gap:1.5rem; margin:0.5rem 0 1rem 0; flex-wrap:wrap;'>
-        <span style='background:#1B3A6B; color:white; padding:3px 10px;
-                     border-radius:12px; font-size:0.82rem;'>💊 Dosage Form</span>
-        <span style='background:#27AE60; color:white; padding:3px 10px;
-                     border-radius:12px; font-size:0.82rem;'>🧪 Excipient</span>
-        <span style='background:#E67E22; color:white; padding:3px 10px;
-                     border-radius:12px; font-size:0.82rem;'>🌡️ Stability</span>
-        <span style='background:#8E44AD; color:white; padding:3px 10px;
-                     border-radius:12px; font-size:0.82rem;'>🔬 Dev Stage</span>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
-
+st.title("🧬 NLP Entity Analysis")
+st.markdown("spaCy pharmaceutical NLP + Evidence Strength Classification across your literature set.")
 st.divider()
 
-# ── Check session state for papers from Search page ──────────────────────────
+# ── Check session state ───────────────────────────────────────────────────────
 papers = st.session_state.get("last_search_papers", [])
 drug_name = st.session_state.get("last_search_drug", "")
 
 if not papers:
-    st.warning(
-        "No papers loaded. Go to the **Literature Search** page first, "
-        "search for a drug, then come back here."
-    )
+    st.warning("No papers in session. Go to **Search** first and search for a drug.")
     st.stop()
 
-st.markdown(f"**Drug:** `{drug_name.title()}` &nbsp;|&nbsp; **Papers to analyse:** {len(papers)}")
+st.markdown(f"**Analysing:** `{drug_name.title()}` — {len(papers)} papers")
 
-# ── Run Analysis ──────────────────────────────────────────────────────────────
-if st.button("Run NLP Extraction", type="primary"):
-    with st.spinner("Extracting pharmaceutical entities from abstracts..."):
+if st.button("Run NLP Analysis", type="primary"):
+    with st.spinner("Running spaCy NLP extraction + evidence classification..."):
         try:
             response = requests.post(
                 f"{BACKEND_URL}/api/v1/analysis",
@@ -73,152 +41,173 @@ if st.button("Run NLP Extraction", type="primary"):
 
             if response.status_code == 200:
                 analyses = response.json()
+                st.session_state["paper_analyses"] = analyses
                 st.session_state["last_analyses"] = analyses
-                st.session_state["paper_analyses"] = analyses   # used by Report page
-                st.session_state["last_analyses_drug"] = drug_name
-                st.success(f"Extraction complete — analysed {len(analyses)} papers")
+                st.success(f"NLP analysis complete — {len(analyses)} papers processed.")
             else:
-                st.error(f"Analysis failed: {response.status_code} — {response.text[:200]}")
+                st.error(f"Analysis failed: {response.status_code} — {response.text}")
                 st.stop()
 
         except requests.exceptions.ConnectionError:
-            st.error("Cannot reach the backend. Make sure `uvicorn backend.main:app --reload` is running.")
+            st.error("Cannot reach the backend.")
             st.stop()
         except Exception as e:
             st.error(f"Error: {str(e)}")
             st.stop()
 
-# ── Display Results ───────────────────────────────────────────────────────────
-analyses = st.session_state.get("last_analyses", [])
+# ── Load results ──────────────────────────────────────────────────────────────
+analyses = st.session_state.get("paper_analyses") or st.session_state.get("last_analyses")
 
-if analyses:
-    # Aggregate counts across all papers
-    all_dosage_forms: dict[str, int] = {}
-    all_excipients: dict[str, int] = {}
-    all_stability: list[str] = []
+if not analyses:
+    st.info("Click 'Run NLP Analysis' above to begin.")
+    st.stop()
 
-    for a in analyses:
-        for df in a.get("dosage_forms", []):
-            all_dosage_forms[df] = all_dosage_forms.get(df, 0) + 1
-        for ex in a.get("excipients", []):
-            all_excipients[ex] = all_excipients.get(ex, 0) + 1
-        for sc in a.get("stability_conditions", []):
-            if sc not in all_stability:
-                all_stability.append(sc)
+# ── Evidence Strength Dashboard ───────────────────────────────────────────────
+st.markdown("### Evidence Strength Dashboard")
 
-    # Summary cards
-    st.markdown("### Aggregate Summary Across All Papers")
-    c1, c2, c3, c4 = st.columns(4)
-    c1.metric("Papers Analysed", len(analyses))
-    c2.metric("Dosage Forms Found", len(all_dosage_forms))
-    c3.metric("Excipients Found", len(all_excipients))
-    c4.metric("Stability Factors", len(all_stability))
+evidence_counts = {"High": 0, "Medium": 0, "Low": 0}
+all_dosage_forms = []
+all_excipients = []
+all_study_types = []
 
-    st.divider()
+for a in analyses:
+    level = (a.get("evidence_level") or "low").capitalize()
+    if level in evidence_counts:
+        evidence_counts[level] += 1
+    all_dosage_forms.extend(a.get("dosage_forms", []))
+    all_excipients.extend(a.get("excipients", []))
+    all_study_types.append(a.get("study_type", "Original Research"))
 
-    # Top findings
-    col_left, col_right = st.columns(2)
+total = len(analyses)
+quality_score = round(
+    (evidence_counts["High"] * 3 + evidence_counts["Medium"] * 2 + evidence_counts["Low"] * 1) /
+    (total * 3) * 100
+) if total > 0 else 0
 
-    with col_left:
-        st.markdown("#### Most Mentioned Dosage Forms")
-        if all_dosage_forms:
-            sorted_df = sorted(all_dosage_forms.items(), key=lambda x: x[1], reverse=True)
-            for form, count in sorted_df[:8]:
-                st.markdown(
-                    f"<span style='background:#1B3A6B; color:white; padding:3px 10px; "
-                    f"border-radius:12px; font-size:0.82rem; margin:2px; display:inline-block;'>"
-                    f"💊 {form.title()}</span> "
-                    f"<span style='color:#666; font-size:0.8rem;'>mentioned in {count} paper(s)</span>",
-                    unsafe_allow_html=True,
-                )
-        else:
-            st.caption("No dosage forms detected.")
+# KPI cards
+e1, e2, e3, e4 = st.columns(4)
+e1.metric("High Evidence Papers", evidence_counts["High"],
+          delta=f"{round(evidence_counts['High']/total*100)}% of set" if total else None)
+e2.metric("Medium Evidence Papers", evidence_counts["Medium"])
+e3.metric("Low Evidence Papers", evidence_counts["Low"])
+e4.metric("Literature Quality Score", f"{quality_score}/100")
 
-    with col_right:
-        st.markdown("#### Excipients Identified")
-        if all_excipients:
-            sorted_ex = sorted(all_excipients.items(), key=lambda x: x[1], reverse=True)
-            for excipient, count in sorted_ex[:8]:
-                st.markdown(
-                    f"<span style='background:#27AE60; color:white; padding:3px 10px; "
-                    f"border-radius:12px; font-size:0.82rem; margin:2px; display:inline-block;'>"
-                    f"🧪 {excipient.title()}</span> "
-                    f"<span style='color:#666; font-size:0.8rem;'>in {count} paper(s)</span>",
-                    unsafe_allow_html=True,
-                )
-        else:
-            st.caption("No excipients detected.")
+# Charts row
+ch1, ch2 = st.columns(2)
 
-    if all_stability:
-        st.markdown("#### Stability Conditions Mentioned")
-        tags_html = " ".join([
-            f"<span style='background:#E67E22; color:white; padding:3px 10px; "
-            f"border-radius:12px; font-size:0.82rem; margin:2px; display:inline-block;'>"
-            f"🌡️ {s}</span>"
-            for s in all_stability[:12]
-        ])
-        st.markdown(tags_html, unsafe_allow_html=True)
-
-    st.divider()
-
-    # Per-paper breakdown
-    st.markdown("### Per-Paper Entity Breakdown")
-    for i, analysis in enumerate(analyses, 1):
-        title_short = analysis["title"][:90] + ("..." if len(analysis["title"]) > 90 else "")
-        has_entities = (
-            analysis.get("dosage_forms") or
-            analysis.get("excipients") or
-            analysis.get("stability_conditions")
-        )
-
-        with st.expander(f"**{i}. {title_short}**", expanded=False):
-            if not has_entities:
-                st.caption("No pharmaceutical entities detected in this abstract.")
-                continue
-
-            # Dosage forms
-            if analysis.get("dosage_forms"):
-                tags = " ".join([
-                    f"<span style='background:#1B3A6B; color:white; padding:2px 8px; "
-                    f"border-radius:10px; font-size:0.78rem; margin:1px; display:inline-block;'>"
-                    f"💊 {df.title()}</span>"
-                    for df in analysis["dosage_forms"]
-                ])
-                st.markdown(f"**Dosage Forms:** {tags}", unsafe_allow_html=True)
-
-            # Excipients
-            if analysis.get("excipients"):
-                tags = " ".join([
-                    f"<span style='background:#27AE60; color:white; padding:2px 8px; "
-                    f"border-radius:10px; font-size:0.78rem; margin:1px; display:inline-block;'>"
-                    f"🧪 {ex.title()}</span>"
-                    for ex in analysis["excipients"]
-                ])
-                st.markdown(f"**Excipients:** {tags}", unsafe_allow_html=True)
-
-            # Stability
-            if analysis.get("stability_conditions"):
-                tags = " ".join([
-                    f"<span style='background:#E67E22; color:white; padding:2px 8px; "
-                    f"border-radius:10px; font-size:0.78rem; margin:1px; display:inline-block;'>"
-                    f"🌡️ {s}</span>"
-                    for s in analysis["stability_conditions"]
-                ])
-                st.markdown(f"**Stability:** {tags}", unsafe_allow_html=True)
-
-            # Dev stage
-            dev_entities = [e for e in analysis.get("entities", []) if e.get("label") == "DEV_STAGE"]
-            if dev_entities:
-                tags = " ".join([
-                    f"<span style='background:#8E44AD; color:white; padding:2px 8px; "
-                    f"border-radius:10px; font-size:0.78rem; margin:1px; display:inline-block;'>"
-                    f"🔬 {e['text']}</span>"
-                    for e in dev_entities[:5]
-                ])
-                st.markdown(f"**Research Stage:** {tags}", unsafe_allow_html=True)
-
-    st.divider()
-    st.info(
-        "Extraction complete. Go to **Formulation Feasibility** page to see "
-        "dosage form scores calculated from these results."
+with ch1:
+    ev_colors = {"High": "#27AE60", "Medium": "#F39C12", "Low": "#E74C3C"}
+    fig_ev = px.pie(
+        names=list(evidence_counts.keys()),
+        values=list(evidence_counts.values()),
+        title="Evidence Strength Distribution",
+        color=list(evidence_counts.keys()),
+        color_discrete_map=ev_colors,
+        hole=0.45,
     )
+    fig_ev.update_layout(height=300, margin=dict(t=40, b=10))
+    st.plotly_chart(fig_ev, use_container_width=True)
+
+with ch2:
+    if all_dosage_forms:
+        df_counts = pd.Series(all_dosage_forms).value_counts().head(8)
+        fig_df = px.bar(
+            x=df_counts.values,
+            y=df_counts.index,
+            orientation="h",
+            title="Top Dosage Forms in Literature",
+            color=df_counts.values,
+            color_continuous_scale="Blues",
+        )
+        fig_df.update_layout(showlegend=False, coloraxis_showscale=False,
+                             height=300, margin=dict(t=40, b=10))
+        st.plotly_chart(fig_df, use_container_width=True)
+    else:
+        st.info("No dosage forms extracted from this literature set.")
+
+# Study type breakdown
+if all_study_types:
+    st.markdown("### Study Type Breakdown")
+    st_counts = pd.Series(all_study_types).value_counts()
+    fig_st = px.bar(
+        x=st_counts.index,
+        y=st_counts.values,
+        title="Study Types Identified",
+        color=st_counts.values,
+        color_continuous_scale="Viridis",
+        labels={"x": "Study Type", "y": "Count"},
+    )
+    fig_st.update_layout(showlegend=False, coloraxis_showscale=False,
+                         height=280, margin=dict(t=40, b=10))
+    st.plotly_chart(fig_st, use_container_width=True)
+
+# Drug Intelligence Summary
+st.markdown("### Drug Intelligence Summary")
+top_excipients = pd.Series(all_excipients).value_counts().head(5).index.tolist() if all_excipients else []
+top_dosage_forms = pd.Series(all_dosage_forms).value_counts().head(3).index.tolist() if all_dosage_forms else []
+
+cols_s = st.columns(3)
+with cols_s[0]:
+    st.markdown("**Top Dosage Forms**")
+    for df_name in (top_dosage_forms or ["None identified"]):
+        st.markdown(f"- {df_name.title()}")
+with cols_s[1]:
+    st.markdown("**Key Excipients Found**")
+    for ex in (top_excipients or ["None identified"]):
+        st.markdown(f"- {ex.title()}")
+with cols_s[2]:
+    st.markdown("**Evidence Profile**")
+    pct_high = round(evidence_counts["High"] / total * 100) if total else 0
+    pct_med = round(evidence_counts["Medium"] / total * 100) if total else 0
+    pct_low = round(evidence_counts["Low"] / total * 100) if total else 0
+    st.markdown(f"- High: {pct_high}% of papers")
+    st.markdown(f"- Medium: {pct_med}% of papers")
+    st.markdown(f"- Low: {pct_low}% of papers")
+
+# ── Per-Paper Insight Panels ──────────────────────────────────────────────────
+st.divider()
+st.markdown("### Per-Paper Insight Panels")
+
+paper_map = {p["pubmed_id"]: p for p in papers}
+
+for i, analysis in enumerate(analyses, 1):
+    paper = paper_map.get(analysis.get("pubmed_id"), {})
+    ev_level = (analysis.get("evidence_level") or "low").capitalize()
+    study_type = analysis.get("study_type", "Original Research")
+    ev_color = {"High": "#27AE60", "Medium": "#F39C12", "Low": "#E74C3C"}.get(ev_level, "#95A5A6")
+
+    title = paper.get("title", analysis.get("title", "Untitled"))
+    year = paper.get("year", "")
+
+    with st.expander(f"**{i}. {title[:90]}{'...' if len(title) > 90 else ''}** ({year})", expanded=False):
+        badge_col, info_col = st.columns([1, 4])
+        with badge_col:
+            st.markdown(
+                f"<div style='background:{ev_color};color:white;padding:8px 12px;"
+                f"border-radius:8px;text-align:center;font-weight:bold;'>"
+                f"{ev_level}<br><small>Evidence</small></div>",
+                unsafe_allow_html=True,
+            )
+            st.caption(study_type)
+        with info_col:
+            pc1, pc2 = st.columns(2)
+            with pc1:
+                dosage_forms = analysis.get("dosage_forms", [])
+                st.markdown(f"**Dosage Forms:** {', '.join(dosage_forms) if dosage_forms else 'None identified'}")
+                excipients = analysis.get("excipients", [])
+                st.markdown(f"**Excipients:** {', '.join(excipients[:4]) if excipients else 'None identified'}")
+            with pc2:
+                stability = analysis.get("stability_conditions", [])
+                st.markdown(f"**Stability:** {', '.join(stability[:3]) if stability else 'None identified'}")
+                entities = analysis.get("entities", [])
+                drug_entities = [e["text"] for e in entities if e.get("label") in ("DRUG", "CHEMICAL")][:4]
+                st.markdown(f"**Key Drug Entities:** {', '.join(drug_entities) if drug_entities else 'None'}")
+
+        abstract = paper.get("abstract", "")
+        if abstract:
+            st.caption(abstract[:300] + ("..." if len(abstract) > 300 else ""))
+        if paper.get("url"):
+            st.markdown(f"[Open on PubMed →]({paper['url']})")
+
+st.divider()
+st.info("Analysis complete. Go to **Formulation Intelligence** to score dosage form feasibility.")

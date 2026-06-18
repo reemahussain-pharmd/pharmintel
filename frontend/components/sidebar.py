@@ -45,9 +45,11 @@ def render_sidebar():
         drug = st.session_state.get("last_search_drug", "")
         has_search      = bool(st.session_state.get("last_search_papers"))
         has_analysis    = bool(st.session_state.get("last_analyses"))
-        has_formulation = bool(st.session_state.get("formulation_result"))
-        has_market      = bool(st.session_state.get("market_data"))
-        has_competitor  = bool(st.session_state.get("competitor_data"))
+        has_formulation = bool(st.session_state.get("formulation_result") or st.session_state.get("last_formulation"))
+        has_market      = bool(st.session_state.get("market_data") or st.session_state.get("last_market"))
+        has_competitor  = bool(st.session_state.get("competitor_data") or st.session_state.get("last_competitor"))
+        has_regulatory  = bool(st.session_state.get("regulatory_data"))
+        has_repurposing = bool(st.session_state.get("repurposing_data"))
         has_report      = bool(st.session_state.get("report_result"))
 
         if drug:
@@ -59,12 +61,14 @@ def render_sidebar():
             )
 
         steps = [
-            ("Search",      has_search,      "🔍"),
-            ("Analysis",    has_analysis,    "🧬"),
-            ("Formulation", has_formulation, "💊"),
-            ("Market",      has_market,      "📊"),
-            ("Competitor",  has_competitor,  "🏢"),
-            ("Report",      has_report,      "📄"),
+            ("Search",       has_search,      "🔍"),
+            ("Analysis",     has_analysis,    "🧬"),
+            ("Formulation",  has_formulation, "💊"),
+            ("Market",       has_market,      "📊"),
+            ("Competitor",   has_competitor,  "🏢"),
+            ("Regulatory",   has_regulatory,  "🏛️"),
+            ("Repurposing",  has_repurposing, "🔄"),
+            ("Report",       has_report,      "📄"),
         ]
 
         progress_html = ""
@@ -120,6 +124,7 @@ def render_sidebar():
         st.markdown(
             "<div style='font-size:0.75rem; color:#AAA; text-align:center;'>"
             "spaCy · Rule Engine · RAG · Gemini AI<br>"
-            "India Market | CDSCO/DCGI</div>",
+            "India Market | CDSCO / USFDA / EMA / MHRA<br>"
+            "<b>PharmIntel v2.0</b></div>",
             unsafe_allow_html=True,
         )

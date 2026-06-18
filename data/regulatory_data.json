@@ -1,0 +1,314 @@
+{
+  "metformin": {
+    "india": {
+      "status": "Approved",
+      "authority": "CDSCO / DCGI",
+      "schedule": "Schedule H",
+      "approved_forms": ["Tablet", "Extended Release Tablet", "Oral Suspension"],
+      "approval_notes": "First-line antidiabetic. Widely available as generic.",
+      "restrictions": "Prescription only. Contraindicated in renal impairment (eGFR <30).",
+      "special_requirements": "Monitor renal function. Suspend before contrast media procedures.",
+      "regulatory_readiness_score": 90
+    },
+    "usfda": {
+      "status": "Approved",
+      "application": "NDA 020357 / Multiple ANDAs",
+      "approved_forms": ["Tablet", "Extended Release Tablet", "Oral Solution"],
+      "black_box_warning": true,
+      "bbw_detail": "Lactic acidosis risk. Contraindicated in renal impairment.",
+      "otc_availability": false
+    },
+    "ema": {
+      "status": "Approved",
+      "approved_forms": ["Tablet", "Oral Solution"],
+      "notes": "Approved for T2DM. Preferred agent in EU guidelines."
+    },
+    "mhra": {
+      "status": "Approved",
+      "approved_forms": ["Tablet", "Oral Solution"],
+      "notes": "POM. Widely available in UK generic market."
+    },
+    "regulatory_readiness_score": 90,
+    "new_formulation_notes": "Excellent regulatory pathway. API well-characterised. Novel delivery systems (ODT, nanoparticles) require full CTD dossier."
+  },
+  "amlodipine": {
+    "india": {
+      "status": "Approved",
+      "authority": "CDSCO / DCGI",
+      "schedule": "Schedule H",
+      "approved_forms": ["Tablet"],
+      "approval_notes": "Calcium channel blocker. Widely used for hypertension.",
+      "restrictions": "Prescription only.",
+      "special_requirements": "Caution in hepatic impairment. Grapefruit interaction.",
+      "regulatory_readiness_score": 85
+    },
+    "usfda": {
+      "status": "Approved",
+      "application": "NDA 019787 / Multiple ANDAs",
+      "approved_forms": ["Tablet"],
+      "black_box_warning": false,
+      "otc_availability": false
+    },
+    "ema": {
+      "status": "Approved",
+      "approved_forms": ["Tablet"],
+      "notes": "Approved for hypertension and angina."
+    },
+    "mhra": {
+      "status": "Approved",
+      "approved_forms": ["Tablet"],
+      "notes": "POM."
+    },
+    "regulatory_readiness_score": 85,
+    "new_formulation_notes": "Oral liquid formulation would require new strength approval. Fixed-dose combinations common in India."
+  },
+  "atorvastatin": {
+    "india": {
+      "status": "Approved",
+      "authority": "CDSCO / DCGI",
+      "schedule": "Schedule H",
+      "approved_forms": ["Tablet"],
+      "approval_notes": "Most prescribed statin in India. Multiple generic manufacturers.",
+      "restrictions": "Prescription only. Avoid in pregnancy.",
+      "special_requirements": "Monitor LFTs. Myopathy risk with concurrent drugs.",
+      "regulatory_readiness_score": 85
+    },
+    "usfda": {
+      "status": "Approved",
+      "application": "NDA 020702 (Lipitor) / Multiple ANDAs",
+      "approved_forms": ["Tablet"],
+      "black_box_warning": false,
+      "otc_availability": false
+    },
+    "ema": {
+      "status": "Approved",
+      "approved_forms": ["Tablet"],
+      "notes": "Approved for hypercholesterolemia and CV risk reduction."
+    },
+    "mhra": {
+      "status": "Approved",
+      "approved_forms": ["Tablet"],
+      "notes": "POM."
+    },
+    "regulatory_readiness_score": 85,
+    "new_formulation_notes": "Chewable or dispersible tablet opportunity. FDC with ezetimibe approved in India."
+  },
+  "omeprazole": {
+    "india": {
+      "status": "Approved",
+      "authority": "CDSCO / DCGI",
+      "schedule": "Schedule H",
+      "approved_forms": ["Capsule", "Enteric-Coated Tablet", "IV Injection"],
+      "approval_notes": "First PPI approved in India. Very high usage.",
+      "restrictions": "Prescription only. Long-term use: monitor Mg2+, B12.",
+      "special_requirements": "Enteric-coating essential due to acid lability.",
+      "regulatory_readiness_score": 88
+    },
+    "usfda": {
+      "status": "Approved (Rx + OTC)",
+      "application": "NDA 019810",
+      "approved_forms": ["Capsule", "Tablet", "Powder for Oral Suspension"],
+      "black_box_warning": false,
+      "otc_availability": true
+    },
+    "ema": {
+      "status": "Approved",
+      "approved_forms": ["Capsule", "Tablet", "IV Solution"],
+      "notes": "OTC in several EU countries."
+    },
+    "mhra": {
+      "status": "Approved",
+      "approved_forms": ["Capsule", "Tablet", "IV Injection"],
+      "notes": "OTC 10mg; POM above 20mg."
+    },
+    "regulatory_readiness_score": 88,
+    "new_formulation_notes": "Pediatric formulation (oral suspension/granules) is a significant gap. Enteric-coating tech is mandatory for new oral forms."
+  },
+  "lisinopril": {
+    "india": {
+      "status": "Approved",
+      "authority": "CDSCO / DCGI",
+      "schedule": "Schedule H",
+      "approved_forms": ["Tablet"],
+      "approval_notes": "ACE inhibitor for hypertension and heart failure.",
+      "restrictions": "Prescription only. Avoid in pregnancy (teratogen).",
+      "special_requirements": "Monitor potassium, renal function. Risk of angioedema.",
+      "regulatory_readiness_score": 82
+    },
+    "usfda": {
+      "status": "Approved",
+      "application": "NDA 019777",
+      "approved_forms": ["Tablet", "Oral Solution"],
+      "black_box_warning": true,
+      "bbw_detail": "Fetal toxicity — discontinue if pregnancy detected.",
+      "otc_availability": false
+    },
+    "ema": {
+      "status": "Approved",
+      "approved_forms": ["Tablet"],
+      "notes": "Approved for hypertension, heart failure, post-MI."
+    },
+    "mhra": {
+      "status": "Approved",
+      "approved_forms": ["Tablet", "Oral Solution"],
+      "notes": "POM."
+    },
+    "regulatory_readiness_score": 82,
+    "new_formulation_notes": "Oral solution formulation is an opportunity for pediatric/elderly use. ACE inhibitors have well-established regulatory dossier requirements."
+  },
+  "paracetamol": {
+    "india": {
+      "status": "Approved",
+      "authority": "CDSCO / DCGI",
+      "schedule": "OTC (some strengths Schedule H)",
+      "approved_forms": ["Tablet", "Syrup", "IV Infusion", "Suppository", "Dispersible Tablet"],
+      "approval_notes": "Most widely used analgesic/antipyretic. OTC availability.",
+      "restrictions": "Hepatotoxicity risk in overdose. Max 4g/day.",
+      "special_requirements": "Dose reduction in hepatic impairment.",
+      "regulatory_readiness_score": 92
+    },
+    "usfda": {
+      "status": "Approved (OTC + Rx)",
+      "application": "Various OTC monographs + NDA 022450 (IV)",
+      "approved_forms": ["Tablet", "Capsule", "Liquid", "IV Infusion", "Suppository"],
+      "black_box_warning": false,
+      "otc_availability": true
+    },
+    "ema": {
+      "status": "Approved",
+      "approved_forms": ["Tablet", "Oral Solution", "IV Infusion", "Suppository"],
+      "notes": "OTC in most EU countries."
+    },
+    "mhra": {
+      "status": "Approved",
+      "approved_forms": ["Tablet", "Oral Solution", "IV Infusion", "Suppository"],
+      "notes": "POM (IV), OTC (oral)."
+    },
+    "regulatory_readiness_score": 92,
+    "new_formulation_notes": "Novel delivery (transdermal, buccal) requires full bridging studies. Extended-release formulations approved in some markets."
+  },
+  "azithromycin": {
+    "india": {
+      "status": "Approved",
+      "authority": "CDSCO / DCGI",
+      "schedule": "Schedule H",
+      "approved_forms": ["Tablet", "Capsule", "Oral Suspension", "IV Injection"],
+      "approval_notes": "Macrolide antibiotic. High usage for respiratory infections.",
+      "restrictions": "Prescription only. Antimicrobial stewardship concerns.",
+      "special_requirements": "QTc prolongation risk. Monitor ECG in high-risk patients.",
+      "regulatory_readiness_score": 78
+    },
+    "usfda": {
+      "status": "Approved",
+      "application": "NDA 050710",
+      "approved_forms": ["Tablet", "Oral Suspension", "IV Injection"],
+      "black_box_warning": false,
+      "otc_availability": false
+    },
+    "ema": {
+      "status": "Approved",
+      "approved_forms": ["Tablet", "Capsule", "Oral Suspension", "IV"],
+      "notes": "Approved for respiratory, skin, and STI indications."
+    },
+    "mhra": {
+      "status": "Approved",
+      "approved_forms": ["Tablet", "Capsule", "Oral Suspension", "IV"],
+      "notes": "POM."
+    },
+    "regulatory_readiness_score": 78,
+    "new_formulation_notes": "Ophthalmic formulation approved in some markets. Extended-release oral formulation is a commercial opportunity."
+  },
+  "pantoprazole": {
+    "india": {
+      "status": "Approved",
+      "authority": "CDSCO / DCGI",
+      "schedule": "Schedule H",
+      "approved_forms": ["Enteric-Coated Tablet", "IV Injection"],
+      "approval_notes": "Second-generation PPI. Very high prescription volume.",
+      "restrictions": "Prescription only.",
+      "special_requirements": "Enteric-coating mandatory. Monitor Mg2+ with long-term use.",
+      "regulatory_readiness_score": 85
+    },
+    "usfda": {
+      "status": "Approved (Rx + OTC)",
+      "application": "NDA 020987",
+      "approved_forms": ["Enteric-Coated Tablet", "IV Injection", "Granules for Oral Suspension"],
+      "black_box_warning": false,
+      "otc_availability": true
+    },
+    "ema": {
+      "status": "Approved",
+      "approved_forms": ["Enteric-Coated Tablet", "IV Injection"],
+      "notes": "OTC in some EU countries."
+    },
+    "mhra": {
+      "status": "Approved",
+      "approved_forms": ["Enteric-Coated Tablet", "IV Injection"],
+      "notes": "POM (IV), OTC 20mg available in UK."
+    },
+    "regulatory_readiness_score": 85,
+    "new_formulation_notes": "Oral suspension/granules formulation for pediatric use is a regulatory gap in India. Enteric-coating is a prerequisite for oral forms."
+  },
+  "cetirizine": {
+    "india": {
+      "status": "Approved",
+      "authority": "CDSCO / DCGI",
+      "schedule": "Schedule H (Rx) / OTC in some states",
+      "approved_forms": ["Tablet", "Oral Solution", "Chewable Tablet"],
+      "approval_notes": "Non-sedating antihistamine. High OTC use.",
+      "restrictions": "Schedule H — prescription required. OTC in 10mg strength in some regions.",
+      "special_requirements": "Reduce dose in renal impairment.",
+      "regulatory_readiness_score": 88
+    },
+    "usfda": {
+      "status": "OTC",
+      "application": "NDA 019835 (Rx) → switched to OTC",
+      "approved_forms": ["Tablet", "Oral Solution", "Chewable Tablet"],
+      "black_box_warning": false,
+      "otc_availability": true
+    },
+    "ema": {
+      "status": "Approved",
+      "approved_forms": ["Tablet", "Oral Solution"],
+      "notes": "OTC in most EU countries."
+    },
+    "mhra": {
+      "status": "Approved",
+      "approved_forms": ["Tablet", "Oral Solution"],
+      "notes": "P medicine (pharmacy only). OTC."
+    },
+    "regulatory_readiness_score": 88,
+    "new_formulation_notes": "Orally disintegrating tablet (ODT) and nasal spray are emerging delivery opportunities. OTC dossier pathway available."
+  },
+  "rosuvastatin": {
+    "india": {
+      "status": "Approved",
+      "authority": "CDSCO / DCGI",
+      "schedule": "Schedule H",
+      "approved_forms": ["Tablet"],
+      "approval_notes": "High-intensity statin. Growing market share vs atorvastatin.",
+      "restrictions": "Prescription only. Avoid in pregnancy. Dose reduce in Asian patients.",
+      "special_requirements": "Monitor CK, LFTs. Interaction with warfarin.",
+      "regulatory_readiness_score": 80
+    },
+    "usfda": {
+      "status": "Approved",
+      "application": "NDA 021366 (Crestor) / ANDAs available",
+      "approved_forms": ["Tablet"],
+      "black_box_warning": false,
+      "otc_availability": false
+    },
+    "ema": {
+      "status": "Approved",
+      "approved_forms": ["Tablet"],
+      "notes": "Approved for hypercholesterolemia and CVD risk reduction."
+    },
+    "mhra": {
+      "status": "Approved",
+      "approved_forms": ["Tablet"],
+      "notes": "POM."
+    },
+    "regulatory_readiness_score": 80,
+    "new_formulation_notes": "Oral disintegrating tablet and pediatric formulations are regulatory opportunities. Dose-specific concerns in Asian populations documented in FDA label."
+  }
+}

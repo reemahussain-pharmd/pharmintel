@@ -3,10 +3,11 @@
 # Flow: rule_engine (Python scores) → RAG retrieval (relevant literature) → Gemini (one sentence per form)
 # Connects to: routes/formulation.py, rule_engine.py, rag_engine.py, ai_engine.py
 
-from backend.models.schemas import FormulationRequest, FormulationResponse, FormulationScore, ReportRequest
+from backend.models.schemas import FormulationRequest, FormulationResponse, FormulationScore, ReportRequest, ConfidenceScore
 from backend.services.rule_engine import score_dosage_forms
 from backend.services.rag_engine import embed_papers, retrieve_context
 from backend.services.ai_engine import generate_text_sync
+from backend.services.confidence_scorer import calculate_formulation_confidence
 from ai.prompts import SYSTEM_PHARMA_EXPERT, FORMULATION_REASONING_PROMPT
 
 
@@ -76,6 +77,20 @@ async def assess_formulation(request: FormulationRequest) -> FormulationResponse
 
         except Exception:
             score.reasoning = _fallback_reasoning(score)
+
+        # Attach confidence score
+        conf = calculate_formulation_confidence(
+            frequency=score.frequency,
+            total_papers=len(request.papers),
+            rule_score=score.score,
+            paper_titles=[p.title for p in request.papers],
+            paper_abstracts=[p.abstract for p in request.papers],
+        )
+        score.confidence = ConfidenceScore(
+            score=conf["score"],
+            level=conf["level"],
+            color=conf["color"],
+        )
 
     top = scores[0].dosage_form.title() if scores else "Insufficient data"
 

@@ -1,238 +1,229 @@
-# File: frontend/pages/3_Formulation.py
-# Purpose: Formulation feasibility dashboard — bar chart, scores, Gemini reasoning
-# Connects to: backend POST /api/v1/formulation, session_state from 1_Search and 2_Analysis
-
 import sys
 import os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 import streamlit as st
 import requests
+import pandas as pd
+import plotly.express as px
+import plotly.graph_objects as go
 from dotenv import load_dotenv
 from frontend.components.sidebar import render_sidebar
 
 load_dotenv()
-
 BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8000")
 
-st.set_page_config(
-    page_title="Formulation Feasibility — PharmIntel",
-    page_icon="💊",
-    layout="wide",
-)
-
+st.set_page_config(page_title="Formulation Intelligence — PharmIntel", page_icon="💊", layout="wide")
 render_sidebar()
 
-st.title("💊 Formulation Feasibility Assessment")
-st.markdown(
-    "The rule engine scores each dosage form **0–100** using literature frequency, "
-    "excipient compatibility, and pharmaceutical formulation rules. "
-    "AI generates one sentence of interpretation per form after scoring is complete."
-)
-
+st.title("💊 Formulation Intelligence")
+st.markdown("Rule Engine scoring + Confidence Assessment + Gemini-powered reasoning for every dosage form.")
 st.divider()
 
-# ── Check session state ───────────────────────────────────────────────────────
+# ── Session state check ───────────────────────────────────────────────────────
 papers = st.session_state.get("last_search_papers", [])
-analyses = st.session_state.get("last_analyses", [])
+analyses = st.session_state.get("paper_analyses") or st.session_state.get("last_analyses", [])
 drug_name = st.session_state.get("last_search_drug", "")
 
 if not papers:
-    st.warning("No papers loaded. Go to **Literature Search** first and search for a drug.")
+    st.warning("No papers found. Run **Search** first.")
     st.stop()
-
 if not analyses:
-    st.warning("No NLP analysis found. Go to **NLP Analysis** and run extraction first.")
+    st.warning("No analysis data. Run **NLP Analysis** first.")
     st.stop()
 
-st.markdown(f"**Drug:** `{drug_name.title()}` | **Papers:** {len(papers)} | **Analyses:** {len(analyses)}")
+st.markdown(f"**Drug:** `{drug_name.title()}` | {len(papers)} papers | {len(analyses)} analysed")
 
-# ── Run Scoring ───────────────────────────────────────────────────────────────
-if st.button("Run Formulation Scoring", type="primary"):
-    with st.spinner("Scoring dosage forms with rule engine... then generating AI reasoning..."):
+if st.button("Run Formulation Assessment", type="primary"):
+    with st.spinner("Scoring dosage forms with Rule Engine + Confidence Scoring + Gemini..."):
         try:
             response = requests.post(
                 f"{BACKEND_URL}/api/v1/formulation",
-                json={
-                    "drug_name": drug_name,
-                    "papers": papers,
-                    "paper_analyses": analyses,
-                },
+                json={"drug_name": drug_name, "papers": papers, "paper_analyses": analyses},
                 timeout=120,
             )
 
             if response.status_code == 200:
                 data = response.json()
-                st.session_state["formulation_result"] = data
-                st.session_state["formulation_response"] = data  # used by Report page
-                st.success(
-                    f"Scoring complete — {len(data['scores'])} dosage forms assessed. "
-                    f"Top recommendation: **{data['top_recommendation']}**"
-                )
+                st.session_state["formulation_response"] = data
+                st.session_state["last_formulation"] = data
+                st.success(f"Assessment complete — {len(data.get('scores', []))} dosage forms scored.")
             else:
-                st.error(f"Scoring failed: {response.status_code} — {response.text[:300]}")
+                st.error(f"Formulation assessment failed: {response.status_code}")
                 st.stop()
 
         except requests.exceptions.ConnectionError:
-            st.error("Cannot reach backend. Make sure `uvicorn backend.main:app --reload` is running.")
-            st.stop()
-        except requests.exceptions.Timeout:
-            st.error("Request timed out. Try again — AI reasoning can take up to 60 seconds.")
+            st.error("Cannot reach the backend.")
             st.stop()
         except Exception as e:
             st.error(f"Error: {str(e)}")
             st.stop()
 
-# ── Display Results ───────────────────────────────────────────────────────────
-result = st.session_state.get("formulation_result")
+# ── Load results ──────────────────────────────────────────────────────────────
+data = st.session_state.get("formulation_response") or st.session_state.get("last_formulation")
 
-if result:
-    scores = result.get("scores", [])
-    top_rec = result.get("top_recommendation", "")
+if not data:
+    st.info("Click 'Run Formulation Assessment' above to begin.")
+    st.stop()
 
-    if not scores:
-        st.info("No dosage form scores generated. This may happen if abstracts contain limited formulation data.")
-        st.stop()
+scores = data.get("scores", [])
+top_rec = data.get("top_recommendation", "N/A")
+rag_sources = data.get("rag_sources", [])
 
-    # Top recommendation banner
-    if top_rec:
-        st.markdown(
-            f"""
-            <div style='background: linear-gradient(135deg, #1B3A6B, #2E5FA3);
-                        color: white; padding: 1.2rem 1.5rem; border-radius: 10px;
-                        margin-bottom: 1.5rem;'>
-                <h3 style='margin:0; color:white;'>🏆 Top Recommendation</h3>
-                <p style='margin:0.3rem 0 0 0; font-size:1.3rem; font-weight:600;'>{top_rec}</p>
-                <p style='margin:0.2rem 0 0 0; font-size:0.85rem; opacity:0.85;'>
-                    Highest combined score from literature frequency + formulation rules + excipient compatibility
-                </p>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
+if not scores:
+    st.warning("No dosage forms scored. Ensure NLP analysis found relevant entities.")
+    st.stop()
 
-    # Score legend
-    st.markdown(
-        """
-        <div style='display:flex; gap:1.5rem; margin-bottom:1rem; flex-wrap:wrap;'>
-            <span style='color:#27AE60; font-weight:600;'>■ ≥70 Highly Feasible</span>
-            <span style='color:#F39C12; font-weight:600;'>■ 40–69 Moderately Feasible</span>
-            <span style='color:#E74C3C; font-weight:600;'>■ &lt;40 Low Feasibility</span>
-        </div>
-        """,
-        unsafe_allow_html=True,
+# ── Top Recommendation Banner ─────────────────────────────────────────────────
+top_score_obj = scores[0] if scores else {}
+top_conf = (top_score_obj.get("confidence") or {})
+top_conf_score = top_conf.get("score", 0)
+top_conf_level = top_conf.get("level", "Low")
+top_conf_color = top_conf.get("color", "#E74C3C")
+
+st.markdown(
+    f"""<div style='background:linear-gradient(135deg,#1B4F72,#2E86AB);
+    color:white;padding:20px 24px;border-radius:12px;margin-bottom:16px;'>
+    <h3 style='margin:0;color:white;'>Top Recommendation: {top_rec}</h3>
+    <p style='margin:4px 0 0;opacity:0.9;'>Score: {top_score_obj.get('score',0)}/100 &nbsp;|&nbsp;
+    Confidence: <span style='color:{top_conf_color};font-weight:bold;'>{top_conf_level}
+    ({top_conf_score:.0f}/100)</span> &nbsp;|&nbsp;
+    Literature mentions: {top_score_obj.get('frequency',0)}</p></div>""",
+    unsafe_allow_html=True,
+)
+
+# ── KPI Row ───────────────────────────────────────────────────────────────────
+k1, k2, k3, k4 = st.columns(4)
+high_scores = sum(1 for s in scores if s.get("score", 0) >= 70)
+avg_score = round(sum(s.get("score", 0) for s in scores) / len(scores), 1)
+avg_conf = round(sum((s.get("confidence") or {}).get("score", 0) for s in scores) / len(scores), 1)
+k1.metric("Dosage Forms Scored", len(scores))
+k2.metric("High-Scoring Forms (≥70)", high_scores)
+k3.metric("Average Score", f"{avg_score}/100")
+k4.metric("Average Confidence", f"{avg_conf}/100")
+
+# ── Bar Chart ─────────────────────────────────────────────────────────────────
+st.markdown("### Dosage Form Feasibility Scores")
+top_n = scores[:10]
+df_chart = pd.DataFrame([
+    {"Dosage Form": s["dosage_form"], "Score": s["score"],
+     "Confidence": (s.get("confidence") or {}).get("score", 0),
+     "Color": s.get("color", "#95A5A6")}
+    for s in top_n
+])
+
+fig_bar = go.Figure()
+fig_bar.add_trace(go.Bar(
+    y=df_chart["Dosage Form"],
+    x=df_chart["Score"],
+    orientation="h",
+    marker_color=df_chart["Color"],
+    name="Feasibility Score",
+))
+fig_bar.update_layout(
+    title="Rule Engine Feasibility Score (0–100)",
+    xaxis_title="Score",
+    height=max(300, len(top_n) * 42),
+    margin=dict(t=40, b=20, l=150, r=20),
+    plot_bgcolor="rgba(0,0,0,0)",
+    paper_bgcolor="rgba(0,0,0,0)",
+)
+st.plotly_chart(fig_bar, use_container_width=True)
+
+# ── Radar Chart ───────────────────────────────────────────────────────────────
+top5 = scores[:5]
+if top5 and top5[0].get("components"):
+    st.markdown("### Score Component Radar — Top 5 Forms")
+    categories = ["Base Score", "Literature Freq.", "Boosters", "Excipient Compat.", "Penalty"]
+    fig_radar = go.Figure()
+    for s in top5:
+        comp = s.get("components") or {}
+        values = [
+            comp.get("base", 0),
+            comp.get("literature_frequency", 0),
+            comp.get("score_boosters", 0),
+            comp.get("excipient_compatibility", 0),
+            comp.get("penalty", 0),
+        ]
+        values.append(values[0])
+        fig_radar.add_trace(go.Scatterpolar(
+            r=values,
+            theta=categories + [categories[0]],
+            fill="toself",
+            name=s["dosage_form"],
+            opacity=0.7,
+        ))
+    fig_radar.update_layout(
+        polar=dict(radialaxis=dict(visible=True, range=[0, 35])),
+        showlegend=True,
+        height=450,
+        margin=dict(t=40, b=20),
     )
+    st.plotly_chart(fig_radar, use_container_width=True)
 
-    st.markdown("### Dosage Form Scores")
+# ── Score Breakdown Table ─────────────────────────────────────────────────────
+st.markdown("### Score Breakdown by Component")
+breakdown_rows = []
+for s in scores:
+    comp = s.get("components") or {}
+    conf = s.get("confidence") or {}
+    breakdown_rows.append({
+        "Dosage Form": s["dosage_form"],
+        "Base": comp.get("base", 0),
+        "Lit. Freq.": comp.get("literature_frequency", 0),
+        "Boosters": comp.get("score_boosters", 0),
+        "Excipient": comp.get("excipient_compatibility", 0),
+        "Penalty": f"-{comp.get('penalty', 0)}",
+        "Final Score": s["score"],
+        "Confidence": f"{conf.get('score', 0):.0f} ({conf.get('level', 'Low')})",
+    })
+df_breakdown = pd.DataFrame(breakdown_rows)
+st.dataframe(df_breakdown, use_container_width=True, hide_index=True)
 
-    # Bar chart + reasoning
-    for score_item in scores:
-        form = score_item["dosage_form"]
-        score_val = score_item["score"]
-        color = score_item["color"]
-        frequency = score_item["frequency"]
-        reasoning = score_item.get("reasoning", "")
+# ── Explainability Panels ─────────────────────────────────────────────────────
+st.divider()
+st.markdown("### Detailed Explainability Panel")
 
-        # Bar row
-        col1, col2 = st.columns([5, 1])
-        with col1:
-            is_top = form.lower() == top_rec.lower()
-            label = f"{'🏆 ' if is_top else ''}{form.title()}"
-            border = "2px solid #1B3A6B" if is_top else "none"
+for i, score in enumerate(scores, 1):
+    conf = score.get("confidence") or {}
+    conf_color = conf.get("color", "#95A5A6")
+    conf_level = conf.get("level", "Low")
+    conf_score = conf.get("score", 0)
 
+    with st.expander(
+        f"**{i}. {score['dosage_form']}** — Score: {score['score']}/100 | "
+        f"Confidence: {conf_level} ({conf_score:.0f}/100)",
+        expanded=(i == 1),
+    ):
+        ec1, ec2, ec3 = st.columns([1, 1, 2])
+        with ec1:
+            st.metric("Feasibility Score", f"{score['score']}/100")
+            st.metric("Literature Mentions", score.get("frequency", 0))
+        with ec2:
             st.markdown(
-                f"""
-                <div style='margin-bottom:4px; padding: 4px 8px;
-                            border-left: {border}; border-radius:4px;'>
-                    <div style='display:flex; justify-content:space-between;
-                                align-items:center; margin-bottom:3px;'>
-                        <span style='font-weight:{"700" if is_top else "500"};
-                                     font-size:0.95rem;'>{label}</span>
-                        <span style='color:{color}; font-weight:700;
-                                     font-size:0.95rem;'>{score_val}/100</span>
-                    </div>
-                    <div style='background:#e8e8e8; border-radius:6px; height:14px;'>
-                        <div style='background:{color}; width:{score_val}%;
-                                    height:14px; border-radius:6px;
-                                    transition: width 0.3s;'></div>
-                    </div>
-                    <div style='color:#888; font-size:0.75rem; margin-top:2px;'>
-                        Mentioned in {frequency} paper(s)
-                    </div>
-                </div>
-                """,
+                f"<div style='background:{conf_color};color:white;padding:12px;"
+                f"border-radius:8px;text-align:center;'>"
+                f"<b>Confidence</b><br>{conf_level}<br>{conf_score:.0f}/100</div>",
                 unsafe_allow_html=True,
             )
+        with ec3:
+            comp = score.get("components") or {}
+            st.markdown("**Score Breakdown:**")
+            st.markdown(f"- Base score: **{comp.get('base', 0)}**")
+            st.markdown(f"- Literature frequency bonus: **+{comp.get('literature_frequency', 0)}**")
+            st.markdown(f"- Score boosters: **+{comp.get('score_boosters', 0)}**")
+            st.markdown(f"- Excipient compatibility: **+{comp.get('excipient_compatibility', 0)}**")
+            st.markdown(f"- Contraindication penalty: **-{comp.get('penalty', 0)}**")
 
-        with col2:
-            # Expandable reasoning button
-            with st.expander("Why?"):
-                if reasoning:
-                    st.markdown(f"*{reasoning}*")
-                else:
-                    st.caption("No reasoning generated.")
+        st.markdown("**AI Reasoning:**")
+        st.info(score.get("reasoning", "No reasoning available."))
 
+# ── RAG Sources ───────────────────────────────────────────────────────────────
+if rag_sources:
     st.divider()
+    st.markdown("### Literature Sources Used (RAG)")
+    for src in rag_sources:
+        st.markdown(f"- {src}")
 
-    # Summary stats
-    green = sum(1 for s in scores if s["score"] >= 70)
-    orange = sum(1 for s in scores if 40 <= s["score"] < 70)
-    red = sum(1 for s in scores if s["score"] < 40)
-
-    c1, c2, c3, c4 = st.columns(4)
-    c1.metric("Forms Assessed", len(scores))
-    c2.metric("Highly Feasible (≥70)", green, delta=None)
-    c3.metric("Moderate (40–69)", orange, delta=None)
-    c4.metric("Low (<40)", red, delta=None)
-
-    st.divider()
-
-    # Scoring methodology transparency
-    with st.expander("📐 How scores are calculated (Rule Engine methodology)"):
-        st.markdown(
-            """
-            **Score = Base Score + Frequency Score + Booster Score + Excipient Score − Penalty**
-
-            | Component | Max Points | Source |
-            |---|---|---|
-            | Base Score | 20–60 | `formulation_rules.json` — each dosage form has a pre-set base |
-            | Literature Frequency | 0–25 | Papers mentioning this form ÷ total papers × 25 |
-            | Score Boosters | 0–15 | Manufacturing keywords in abstracts (granulation, coating, etc.) |
-            | Excipient Compatibility | 0–10 | Compatible excipients found in literature |
-            | Contraindication Penalty | −0 to −20 | Contraindication keywords found in abstracts |
-
-            **This is fully deterministic Python logic.** No AI was used in the scoring.
-            The AI (Gemini) only writes one explanatory sentence per form after the score is set.
-            """
-        )
-
-    # RAG Sources section
-    rag_sources = result.get("rag_sources", [])
-    if rag_sources:
-        st.markdown("### 📚 Literature Sources Used by AI")
-        st.markdown(
-            "_The following papers were retrieved from ChromaDB and provided "
-            "as context to Gemini when generating reasoning:_"
-        )
-        for i, source in enumerate(rag_sources, 1):
-            st.markdown(
-                f"<div style='background:#F0F4FF; border-left:3px solid #1B3A6B; "
-                f"padding:6px 12px; margin:4px 0; border-radius:4px; font-size:0.85rem;'>"
-                f"📄 {i}. {source}</div>",
-                unsafe_allow_html=True,
-            )
-        st.caption(
-            "Gemini's reasoning is grounded in these retrieved papers — "
-            "not general AI knowledge."
-        )
-    else:
-        st.info(
-            "Run NLP Analysis first to embed papers into ChromaDB, "
-            "then re-run scoring to see literature sources used by AI."
-        )
-
-    st.divider()
-    st.info(
-        "Scores saved to session. Go to **Indian Market Intelligence** to see "
-        "how these forms compare against what's already available in the Indian market."
-    )
+st.divider()
+st.info("Go to **Market Intelligence** to analyse commercial opportunity for this drug.")

@@ -46,6 +46,22 @@ class PaperAnalysis(BaseModel):
     dosage_forms: list[str]
     excipients: list[str]
     stability_conditions: list[str]
+    evidence_level: Optional[str] = "low"      # "high" | "medium" | "low"
+    study_type: Optional[str] = "Original Research"
+
+
+class ScoreComponents(BaseModel):
+    base: float = 0.0
+    literature_frequency: float = 0.0
+    score_boosters: float = 0.0
+    excipient_compatibility: float = 0.0
+    penalty: float = 0.0
+
+
+class ConfidenceScore(BaseModel):
+    score: float = 0.0
+    level: str = "Low"
+    color: str = "#E74C3C"
 
 
 class FormulationScore(BaseModel):
@@ -54,6 +70,8 @@ class FormulationScore(BaseModel):
     reasoning: str
     frequency: int
     color: str
+    components: Optional[ScoreComponents] = None
+    confidence: Optional[ConfidenceScore] = None
 
 
 class FormulationRequest(BaseModel):
