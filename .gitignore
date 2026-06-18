@@ -1,0 +1,45 @@
+# PharmIntel - Git Ignore File
+# Protects secrets and excludes generated/local files
+
+# ===== SECRETS - NEVER COMMIT =====
+.env
+*.env
+
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+*.egg-info/
+dist/
+build/
+*.egg
+
+# ===== Vector Database (local only) =====
+chroma_db/
+
+# ===== IDE =====
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ===== Streamlit =====
+.streamlit/secrets.toml
+
+# ===== Generated Files =====
+reports/
+*.pdf
+*.log
+
+# ===== spaCy Models (large, installed via command) =====
+en_core_web_sm/

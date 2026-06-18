@@ -1,0 +1,72 @@
+{
+  "tablet": {
+    "advantages": ["stable", "cost-effective manufacturing", "high patient compliance", "easy dose precision", "long shelf life", "scalable production"],
+    "score_boosters": ["compression", "granulation", "coating", "disintegrant", "binder", "filler", "immediate release", "modified release"],
+    "contraindications": ["highly hygroscopic drug", "light sensitive without coating", "very low dose potency required"],
+    "base_score": 60,
+    "weight": 1.2
+  },
+  "capsule": {
+    "advantages": ["masks bitter taste", "easy to swallow", "flexible fill options", "good stability", "elegant appearance"],
+    "score_boosters": ["gelatin", "HPMC capsule", "fill", "encapsulation", "softgel"],
+    "contraindications": ["very hygroscopic environment", "very small dose"],
+    "base_score": 55,
+    "weight": 1.1
+  },
+  "extended release tablet": {
+    "advantages": ["once daily dosing", "improved compliance", "reduced peak-trough fluctuation", "smoother plasma levels"],
+    "score_boosters": ["sustained release", "controlled release", "extended release", "HPMC matrix", "erodible", "once daily"],
+    "contraindications": ["drug with narrow therapeutic index without TDM", "high first-pass in certain populations"],
+    "base_score": 50,
+    "weight": 1.15
+  },
+  "oral solution": {
+    "advantages": ["pediatric use", "geriatric use", "dysphagia patients", "rapid absorption", "dose flexibility"],
+    "score_boosters": ["solution", "syrup", "liquid", "suspension", "elixir", "pediatric", "swallowing difficulty"],
+    "contraindications": ["unstable in liquid", "very low solubility without complexation"],
+    "base_score": 40,
+    "weight": 0.9
+  },
+  "injection": {
+    "advantages": ["rapid onset", "100% bioavailability", "bypasses first-pass", "emergency use", "unconscious patients"],
+    "score_boosters": ["intravenous", "intramuscular", "subcutaneous", "parenteral", "IV", "IM", "injection", "infusion"],
+    "contraindications": ["patient self-administration required", "community setting without trained staff"],
+    "base_score": 35,
+    "weight": 1.0
+  },
+  "transdermal patch": {
+    "advantages": ["avoid first-pass effect", "sustained systemic delivery", "improved compliance", "easy removal"],
+    "score_boosters": ["transdermal", "patch", "skin permeation", "percutaneous", "topical systemic"],
+    "contraindications": ["large molecule drugs", "skin irritation prone compounds", "high dose requirements"],
+    "base_score": 30,
+    "weight": 0.85
+  },
+  "inhaler": {
+    "advantages": ["targeted lung delivery", "rapid onset for respiratory", "lower systemic dose", "direct action"],
+    "score_boosters": ["inhalation", "inhaler", "nebulizer", "MDI", "DPI", "pulmonary", "aerosol", "respiratory"],
+    "contraindications": ["systemic action required primarily", "patient unable to coordinate inhalation"],
+    "base_score": 30,
+    "weight": 0.9
+  },
+  "suppository": {
+    "advantages": ["rectal/vaginal delivery", "bypass GI tract", "useful when oral route unavailable", "pediatric fever"],
+    "score_boosters": ["rectal", "suppository", "vaginal", "pessary"],
+    "contraindications": ["patient refusal", "GI not affected", "cleanliness concerns in community"],
+    "base_score": 20,
+    "weight": 0.7
+  },
+  "nanoparticle": {
+    "advantages": ["enhanced bioavailability of poorly soluble drugs", "targeted delivery", "novel IP", "controlled release"],
+    "score_boosters": ["nanoparticle", "nanotechnology", "liposome", "nanoemulsion", "polymeric nanoparticle", "PLGA"],
+    "contraindications": ["complex manufacturing", "regulatory uncertainty", "scale-up challenges"],
+    "base_score": 25,
+    "weight": 0.8
+  },
+  "topical cream": {
+    "advantages": ["local action", "minimal systemic exposure", "easy self-application", "skin conditions"],
+    "score_boosters": ["cream", "ointment", "gel", "lotion", "topical", "dermal", "skin"],
+    "contraindications": ["systemic disease requiring systemic drug levels"],
+    "base_score": 35,
+    "weight": 0.85
+  }
+}

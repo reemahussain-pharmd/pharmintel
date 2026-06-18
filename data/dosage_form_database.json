@@ -1,0 +1,101 @@
+{
+  "tablet": {
+    "route": "oral",
+    "description": "Solid compressed dosage form — the most common pharmaceutical form globally",
+    "typical_bsa": "250mg - 1000mg per unit",
+    "manufacturing": ["direct compression", "wet granulation", "dry granulation"],
+    "regulatory_maturity": "high",
+    "ip_opportunity": "low",
+    "synonyms": ["tablet", "tab", "compressed tablet", "uncoated tablet"]
+  },
+  "film-coated tablet": {
+    "route": "oral",
+    "description": "Tablet with thin polymer coat — improves aesthetics, masks taste, and protects from moisture",
+    "typical_bsa": "250mg - 1000mg per unit",
+    "manufacturing": ["compression then coating"],
+    "regulatory_maturity": "high",
+    "ip_opportunity": "low-medium",
+    "synonyms": ["film coated", "film-coated", "FC tablet"]
+  },
+  "extended release tablet": {
+    "route": "oral",
+    "description": "Tablet releasing drug over 8-24 hours — reduces dosing frequency",
+    "typical_bsa": "250mg - 1000mg per unit",
+    "manufacturing": ["matrix tablet", "coated pellets in tablet", "osmotic pump"],
+    "regulatory_maturity": "high",
+    "ip_opportunity": "medium",
+    "synonyms": ["extended release", "ER", "XR", "sustained release", "SR", "controlled release", "CR", "modified release", "MR", "prolonged release"]
+  },
+  "capsule": {
+    "route": "oral",
+    "description": "Drug enclosed in gelatin or HPMC shell — masks taste, elegant appearance",
+    "typical_bsa": "50mg - 800mg per unit",
+    "manufacturing": ["capsule filling machine", "soft gelatin encapsulation"],
+    "regulatory_maturity": "high",
+    "ip_opportunity": "low",
+    "synonyms": ["capsule", "cap", "hard capsule", "softgel", "soft gelatin capsule"]
+  },
+  "oral solution": {
+    "route": "oral",
+    "description": "Liquid formulation — ideal for pediatric and geriatric patients with swallowing difficulty",
+    "typical_bsa": "1mg/mL - 200mg/5mL",
+    "manufacturing": ["mixing", "filtration", "filling"],
+    "regulatory_maturity": "high",
+    "ip_opportunity": "medium",
+    "synonyms": ["solution", "syrup", "liquid", "oral liquid", "suspension", "elixir", "oral suspension"]
+  },
+  "injection": {
+    "route": "parenteral",
+    "description": "Sterile solution for IV/IM/SC administration — fastest onset, 100% bioavailability",
+    "typical_bsa": "varies widely",
+    "manufacturing": ["aseptic filling", "lyophilization"],
+    "regulatory_maturity": "high",
+    "ip_opportunity": "medium",
+    "synonyms": ["injection", "IV", "intravenous", "IM", "intramuscular", "SC", "subcutaneous", "parenteral", "infusion", "injectable"]
+  },
+  "transdermal patch": {
+    "route": "transdermal",
+    "description": "Adhesive patch delivering drug through skin into systemic circulation",
+    "typical_bsa": "varies by drug",
+    "manufacturing": ["lamination", "coating", "die cutting"],
+    "regulatory_maturity": "medium",
+    "ip_opportunity": "high",
+    "synonyms": ["transdermal", "patch", "TTS", "transdermal system", "skin patch", "percutaneous"]
+  },
+  "inhaler": {
+    "route": "inhalation",
+    "description": "Device delivering drug directly to lungs — used for respiratory and some systemic drugs",
+    "typical_bsa": "varies",
+    "manufacturing": ["MDI filling", "DPI blending", "nebulizer solution"],
+    "regulatory_maturity": "medium",
+    "ip_opportunity": "high",
+    "synonyms": ["inhaler", "MDI", "metered dose inhaler", "DPI", "dry powder inhaler", "nebulizer", "inhalation", "aerosol", "pulmonary"]
+  },
+  "topical cream": {
+    "route": "topical",
+    "description": "Semi-solid for skin application — provides local effect with minimal systemic absorption",
+    "typical_bsa": "0.1% - 10% w/w",
+    "manufacturing": ["emulsification", "mixing", "filling"],
+    "regulatory_maturity": "high",
+    "ip_opportunity": "medium",
+    "synonyms": ["cream", "ointment", "gel", "lotion", "topical", "dermal", "skin cream", "emulsion"]
+  },
+  "suppository": {
+    "route": "rectal/vaginal",
+    "description": "Solid that melts at body temperature — used when oral route is unavailable",
+    "typical_bsa": "1g - 4g per unit",
+    "manufacturing": ["suppository molding"],
+    "regulatory_maturity": "high",
+    "ip_opportunity": "low",
+    "synonyms": ["suppository", "rectal", "vaginal", "pessary"]
+  },
+  "nanoparticle": {
+    "route": "variable (oral/IV/topical)",
+    "description": "Drug-loaded particles 1-1000nm — enhances solubility, enables targeting",
+    "typical_bsa": "varies",
+    "manufacturing": ["nanoprecipitation", "emulsification", "high pressure homogenization"],
+    "regulatory_maturity": "low-medium",
+    "ip_opportunity": "very high",
+    "synonyms": ["nanoparticle", "nanoparticles", "liposome", "nanoemulsion", "nanotechnology", "polymeric nanoparticle", "PLGA nanoparticle", "solid lipid nanoparticle", "SLN"]
+  }
+}

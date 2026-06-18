@@ -1,0 +1,33 @@
+# PharmIntel — AI-Assisted Pharmaceutical R&D Intelligence System
+# Single requirements file — used by both Render.com (backend) and Streamlit Community Cloud (frontend)
+
+# Web Framework
+fastapi
+uvicorn[standard]
+
+# Frontend
+streamlit
+
+# NLP
+spacy
+
+# PubMed Literature Search
+biopython
+
+# Database
+supabase
+
+# PDF Generation
+reportlab
+
+# Data Handling
+pandas
+python-dotenv
+pydantic
+
+# HTTP Requests (used for Gemini REST calls)
+httpx
+requests
+
+# Utilities
+python-multipart

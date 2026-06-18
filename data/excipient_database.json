@@ -1,0 +1,156 @@
+{
+  "lactose": {
+    "role": "diluent",
+    "function": "Bulking agent — adds volume to tablet/capsule to make it compressible",
+    "compatible_forms": ["tablet", "capsule"],
+    "score_contribution": 5,
+    "concerns": ["lactose intolerance patients", "reducing sugars react with amines"]
+  },
+  "microcrystalline cellulose": {
+    "role": "diluent/binder",
+    "function": "Excellent compressibility and binding for direct compression tablets",
+    "compatible_forms": ["tablet", "capsule"],
+    "score_contribution": 8,
+    "concerns": ["absorbs moisture in humid climates"]
+  },
+  "HPMC": {
+    "role": "binder/controlled release matrix",
+    "function": "Forms hydrophilic matrix for sustained release; also used as binder and film coat",
+    "compatible_forms": ["tablet", "extended release tablet", "capsule"],
+    "score_contribution": 10,
+    "concerns": ["viscosity grade must match release target"]
+  },
+  "hydroxypropyl methylcellulose": {
+    "role": "binder/controlled release matrix",
+    "function": "Synonymous with HPMC — widely used matrix former for ER tablets",
+    "compatible_forms": ["tablet", "extended release tablet"],
+    "score_contribution": 10,
+    "concerns": []
+  },
+  "ethylcellulose": {
+    "role": "controlled release coating",
+    "function": "Water-insoluble polymer for extended release coating of pellets or tablets",
+    "compatible_forms": ["extended release tablet", "capsule"],
+    "score_contribution": 9,
+    "concerns": ["requires plasticizer for flexibility"]
+  },
+  "polyvinylpyrrolidone": {
+    "role": "binder",
+    "function": "Binds particles together during wet granulation",
+    "compatible_forms": ["tablet", "capsule"],
+    "score_contribution": 6,
+    "concerns": ["hygroscopic — may affect stability in humid conditions"]
+  },
+  "PVP": {
+    "role": "binder",
+    "function": "Short name for polyvinylpyrrolidone — common granulation binder",
+    "compatible_forms": ["tablet", "capsule"],
+    "score_contribution": 6,
+    "concerns": []
+  },
+  "croscarmellose sodium": {
+    "role": "superdisintegrant",
+    "function": "Rapidly breaks tablets apart on contact with water for fast dissolution",
+    "compatible_forms": ["tablet"],
+    "score_contribution": 7,
+    "concerns": ["incompatible with strongly acidic drugs"]
+  },
+  "crospovidone": {
+    "role": "superdisintegrant",
+    "function": "Fast tablet disintegration via wicking mechanism",
+    "compatible_forms": ["tablet"],
+    "score_contribution": 7,
+    "concerns": []
+  },
+  "magnesium stearate": {
+    "role": "lubricant",
+    "function": "Prevents tablets sticking to punch faces during compression",
+    "compatible_forms": ["tablet", "capsule"],
+    "score_contribution": 5,
+    "concerns": ["over-mixing delays dissolution — overlubrication risk"]
+  },
+  "silicon dioxide": {
+    "role": "glidant",
+    "function": "Improves powder flow in tablet compression and capsule filling",
+    "compatible_forms": ["tablet", "capsule"],
+    "score_contribution": 4,
+    "concerns": []
+  },
+  "colloidal silicon dioxide": {
+    "role": "glidant",
+    "function": "Fine-particle silica for powder flow improvement",
+    "compatible_forms": ["tablet", "capsule"],
+    "score_contribution": 4,
+    "concerns": []
+  },
+  "stearic acid": {
+    "role": "lubricant",
+    "function": "Alternative lubricant to magnesium stearate",
+    "compatible_forms": ["tablet"],
+    "score_contribution": 4,
+    "concerns": []
+  },
+  "mannitol": {
+    "role": "diluent",
+    "function": "Non-hygroscopic diluent ideal for moisture-sensitive drugs; also used in lyophilization",
+    "compatible_forms": ["tablet", "capsule", "injection"],
+    "score_contribution": 6,
+    "concerns": []
+  },
+  "propylene glycol": {
+    "role": "solvent/humectant",
+    "function": "Co-solvent for injectable and topical formulations; humectant in gels",
+    "compatible_forms": ["injection", "topical cream", "oral solution"],
+    "score_contribution": 5,
+    "concerns": ["toxicity at high doses — especially parenteral use"]
+  },
+  "polysorbate 80": {
+    "role": "surfactant/solubilizer",
+    "function": "Solubilizes poorly water-soluble drugs; used in injectables and oral liquids",
+    "compatible_forms": ["injection", "oral solution", "nanoparticle"],
+    "score_contribution": 7,
+    "concerns": ["can cause hypersensitivity reactions in injections"]
+  },
+  "PLGA": {
+    "role": "biodegradable polymer",
+    "function": "Forms nanoparticles and microspheres for controlled/targeted delivery",
+    "compatible_forms": ["nanoparticle", "injection"],
+    "score_contribution": 10,
+    "concerns": ["complex manufacturing", "regulatory pathway for novel excipient"]
+  },
+  "lecithin": {
+    "role": "emulsifier/liposome former",
+    "function": "Forms liposomes and emulsions; natural phospholipid",
+    "compatible_forms": ["nanoparticle", "injection", "oral solution"],
+    "score_contribution": 8,
+    "concerns": ["oxidation stability — protect from light/oxygen"]
+  },
+  "carbomer": {
+    "role": "gelling agent",
+    "function": "Forms viscous gels for topical and vaginal formulations",
+    "compatible_forms": ["topical cream", "oral solution"],
+    "score_contribution": 6,
+    "concerns": ["requires neutralization with NaOH or triethanolamine"]
+  },
+  "gelatin": {
+    "role": "capsule shell",
+    "function": "Standard hard/soft capsule shell material",
+    "compatible_forms": ["capsule"],
+    "score_contribution": 7,
+    "concerns": ["not suitable for vegetarians", "affected by humidity and temperature"]
+  },
+  "sorbitol": {
+    "role": "sweetener/humectant",
+    "function": "Sweetener in oral solutions and syrups; non-cariogenic",
+    "compatible_forms": ["oral solution"],
+    "score_contribution": 5,
+    "concerns": ["osmotic laxative effect at high doses"]
+  },
+  "sucrose": {
+    "role": "sweetener/diluent",
+    "function": "Traditional syrup base and tablet coating sugar",
+    "compatible_forms": ["oral solution", "tablet"],
+    "score_contribution": 4,
+    "concerns": ["not for diabetics", "cariogenic"]
+  }
+}

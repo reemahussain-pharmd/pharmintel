@@ -1,0 +1,25 @@
+# File: render.yaml
+# Purpose: Render.com deployment configuration for the PharmIntel FastAPI backend
+# Deploy at: https://dashboard.render.com → New Web Service → connect GitHub repo
+
+services:
+  - type: web
+    name: pharmintel-api
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: >
+      pip install -r requirements.txt &&
+      pip install https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl
+    startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_KEY
+        sync: false
+      - key: PUBMED_EMAIL
+        sync: false
+      - key: PYTHON_VERSION
+        value: 3.11.0

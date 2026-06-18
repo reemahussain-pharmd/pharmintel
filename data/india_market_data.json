@@ -1,0 +1,145 @@
+{
+  "country": "India",
+  "regulatory_authority": "Central Drugs Standard Control Organisation (CDSCO)",
+  "registration_body": "Drug Controller General of India (DCGI), Ministry of Health & Family Welfare",
+  "market_size_usd_billion": 50.0,
+  "population_billion": 1.44,
+  "healthcare_expenditure_gdp_pct": 3.8,
+  "market_characteristics": [
+    "World's largest generic drug producer",
+    "Pharmacy of the world — supplies 20% of global generic medicines",
+    "Branded generics dominate over pure generics",
+    "Strong price-sensitive market",
+    "Over 3,000 pharmaceutical companies",
+    "Key export destination: USA, UK, Africa, Southeast Asia"
+  ],
+  "major_manufacturers": [
+    "Sun Pharmaceutical Industries",
+    "Dr. Reddy's Laboratories",
+    "Cipla",
+    "Lupin",
+    "Aurobindo Pharma",
+    "Torrent Pharmaceuticals",
+    "Zydus Lifesciences",
+    "Alkem Laboratories",
+    "Mankind Pharma",
+    "Abbott India",
+    "Glenmark Pharmaceuticals",
+    "Cadila Healthcare",
+    "Biocon",
+    "Wockhardt",
+    "Piramal Pharma"
+  ],
+  "drugs": {
+    "metformin": {
+      "approved_forms": ["tablet", "extended release tablet", "oral suspension"],
+      "major_brands": ["Glycomet", "Glucophage", "Obimet", "Gluformin", "Cetapin"],
+      "local_manufacturers": ["USV Pvt Ltd", "Sun Pharma", "Cipla", "Mankind Pharma", "Dr. Reddy's"],
+      "imported": false,
+      "market_gap": ["dispersible tablet for elderly", "once-weekly oral formulation", "fixed dose combination with SGLT2 inhibitor"],
+      "dominant_manufacturer": "USV Pvt Ltd (Glycomet)",
+      "market_notes": "Highly competitive market with >50 generic brands. Price competition is intense. ER formulations growing due to better tolerability.",
+      "approximate_price_inr": "10-80 per strip of 10 tablets",
+      "therapeutic_class": "Antidiabetic — Biguanide"
+    },
+    "amlodipine": {
+      "approved_forms": ["tablet", "film-coated tablet"],
+      "major_brands": ["Amlong", "Stamlo", "Amlip", "Norvasc", "Amtas"],
+      "local_manufacturers": ["Micro Labs", "Sun Pharma", "Cipla", "Lupin", "Torrent"],
+      "imported": false,
+      "market_gap": ["oral solution for pediatric hypertension", "transdermal patch", "combination with nebivolol locally"],
+      "dominant_manufacturer": "Micro Labs (Amlong)",
+      "market_notes": "One of India's highest-volume antihypertensives. Combination products with ARBs growing rapidly.",
+      "approximate_price_inr": "15-60 per strip of 10 tablets",
+      "therapeutic_class": "Antihypertensive — Calcium Channel Blocker"
+    },
+    "atorvastatin": {
+      "approved_forms": ["tablet", "film-coated tablet"],
+      "major_brands": ["Atorva", "Lipitor", "Tonact", "Aztor", "Storvas"],
+      "local_manufacturers": ["Zydus Lifesciences", "Sun Pharma", "Cipla", "Dr. Reddy's", "Lupin"],
+      "imported": false,
+      "market_gap": ["oral suspension for pediatric familial hypercholesterolemia", "combination with ezetimibe + aspirin", "nanoparticle formulation for enhanced absorption"],
+      "dominant_manufacturer": "Zydus Lifesciences (Atorva)",
+      "market_notes": "Massive market — cardiovascular disease is India's top health burden. FDC combinations growing.",
+      "approximate_price_inr": "20-120 per strip of 10 tablets",
+      "therapeutic_class": "Antilipemic — HMG-CoA Reductase Inhibitor"
+    },
+    "omeprazole": {
+      "approved_forms": ["capsule", "tablet", "injection", "oral suspension"],
+      "major_brands": ["Omez", "Prilosec", "Ocid", "Omicap", "Gasec"],
+      "local_manufacturers": ["Dr. Reddy's", "Cipla", "Sun Pharma", "Alkem", "Mankind"],
+      "imported": false,
+      "market_gap": ["orally disintegrating tablet for elderly", "pediatric granules sachet", "combination with antacid in single unit"],
+      "dominant_manufacturer": "Dr. Reddy's Laboratories (Omez)",
+      "market_notes": "Largest PPI market globally by volume. Strong OTC segment growing. Generic competition is extreme.",
+      "approximate_price_inr": "25-80 per strip of 10 capsules",
+      "therapeutic_class": "Proton Pump Inhibitor"
+    },
+    "lisinopril": {
+      "approved_forms": ["tablet"],
+      "major_brands": ["Listril", "Zestril", "Lisinop", "Lipril", "Hipril"],
+      "local_manufacturers": ["Torrent Pharma", "Sun Pharma", "Cipla", "Lupin", "Cadila"],
+      "imported": false,
+      "market_gap": ["oral solution for renal patients", "combination with HCTZ in new strengths", "pediatric formulation"],
+      "dominant_manufacturer": "Torrent Pharmaceuticals (Listril)",
+      "market_notes": "ACE inhibitors are preferred first-line antihypertensives in India. Combination with diuretics dominant.",
+      "approximate_price_inr": "20-70 per strip of 10 tablets",
+      "therapeutic_class": "Antihypertensive — ACE Inhibitor"
+    },
+    "paracetamol": {
+      "approved_forms": ["tablet", "oral suspension", "injection", "suppository", "extended release tablet"],
+      "major_brands": ["Calpol", "Dolo", "Crocin", "Tylenol", "Meftal"],
+      "local_manufacturers": ["Micro Labs (Dolo)", "GSK (Calpol)", "Cipla", "Mankind", "Alkem"],
+      "imported": false,
+      "market_gap": ["effervescent tablet for adults", "controlled release formulation", "combination with caffeine + codeine alternatives"],
+      "dominant_manufacturer": "Micro Labs (Dolo-650)",
+      "market_notes": "Highest volume OTC drug in India. Dolo-650 became a household name post-COVID. Huge brand loyalty.",
+      "approximate_price_inr": "15-35 per strip of 15 tablets",
+      "therapeutic_class": "Analgesic / Antipyretic"
+    },
+    "azithromycin": {
+      "approved_forms": ["tablet", "oral suspension", "injection"],
+      "major_brands": ["Zithromax", "Azithral", "Azee", "Aziwin", "Zady"],
+      "local_manufacturers": ["Cipla (Azee)", "Alkem (Azithral)", "Sun Pharma", "Lupin", "Mankind"],
+      "imported": false,
+      "market_gap": ["extended release oral suspension", "topical ophthalmic formulation locally", "combination antibiotic fixed dose"],
+      "dominant_manufacturer": "Alkem Laboratories (Azithral)",
+      "market_notes": "One of India's most prescribed antibiotics. Resistance concerns growing. Single-dose regimens preferred.",
+      "approximate_price_inr": "40-150 per strip of 6 tablets",
+      "therapeutic_class": "Antibiotic — Macrolide"
+    },
+    "pantoprazole": {
+      "approved_forms": ["tablet", "injection", "delayed release tablet"],
+      "major_brands": ["Pan", "Pantop", "Pankreoflat", "P-pill", "Controloc"],
+      "local_manufacturers": ["Alkem (Pan)", "Sun Pharma", "Cipla", "Dr. Reddy's", "Lupin"],
+      "imported": false,
+      "market_gap": ["oral suspension for pediatrics", "orally disintegrating tablet", "combination with domperidone in new strengths"],
+      "dominant_manufacturer": "Alkem Laboratories (Pan-D)",
+      "market_notes": "Pan-D (pantoprazole + domperidone) is one of India's bestselling FDC combinations. Market extremely price-driven.",
+      "approximate_price_inr": "20-90 per strip of 10 tablets",
+      "therapeutic_class": "Proton Pump Inhibitor"
+    },
+    "cetirizine": {
+      "approved_forms": ["tablet", "oral solution", "film-coated tablet"],
+      "major_brands": ["Cetrizet", "Zyrtec", "Alerid", "Cetzine", "Okacet"],
+      "local_manufacturers": ["Cipla (Okacet)", "Sun Pharma", "Mankind", "Alkem", "Lupin"],
+      "imported": false,
+      "market_gap": ["orally disintegrating tablet", "nasal spray combination", "extended release once-weekly formulation"],
+      "dominant_manufacturer": "Cipla (Okacet)",
+      "market_notes": "Leading second-generation antihistamine in India. Strong seasonal demand. OTC segment growing.",
+      "approximate_price_inr": "10-45 per strip of 10 tablets",
+      "therapeutic_class": "Antihistamine — Second Generation"
+    },
+    "rosuvastatin": {
+      "approved_forms": ["tablet", "film-coated tablet"],
+      "major_brands": ["Rozat", "Crestor", "Rosulip", "Rosuvas", "Rosave"],
+      "local_manufacturers": ["Sun Pharma (Rozat)", "Cipla (Rosulip)", "Dr. Reddy's", "Lupin", "Glenmark"],
+      "imported": false,
+      "market_gap": ["oral suspension", "combination with CoQ10", "low-dose formulation for primary prevention"],
+      "dominant_manufacturer": "Sun Pharmaceutical (Rozat)",
+      "market_notes": "Fastest growing statin in India overtaking atorvastatin in premium segment. High-potency preferred.",
+      "approximate_price_inr": "50-200 per strip of 10 tablets",
+      "therapeutic_class": "Antilipemic — HMG-CoA Reductase Inhibitor"
+    }
+  }
+}

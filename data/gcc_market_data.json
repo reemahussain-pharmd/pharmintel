@@ -1,0 +1,296 @@
+{
+  "UAE": {
+    "regulatory_authority": "Ministry of Health and Prevention (MOHAP)",
+    "registration_body": "Medicines and Pharmacy Department, MOHAP",
+    "market_size_usd_billion": 3.8,
+    "population_million": 9.9,
+    "healthcare_expenditure_gdp_pct": 5.5,
+    "drugs": {
+      "metformin": {
+        "approved_forms": ["tablet", "extended release tablet"],
+        "major_brands": ["Glucophage", "Metforal", "Metmin"],
+        "local_manufacturers": ["Gulf Pharmaceutical Industries (Julphar)"],
+        "imported": true,
+        "market_gap": ["oral solution for pediatrics", "sustained release capsule", "dispersible tablet"],
+        "dominant_manufacturer": "Merck (Glucophage)"
+      },
+      "amlodipine": {
+        "approved_forms": ["tablet"],
+        "major_brands": ["Norvasc", "Amlopin", "Amlor"],
+        "local_manufacturers": ["Gulf Pharmaceutical Industries (Julphar)", "Spimaco"],
+        "imported": true,
+        "market_gap": ["oral solution", "transdermal patch", "combination extended release"],
+        "dominant_manufacturer": "Pfizer (Norvasc)"
+      },
+      "atorvastatin": {
+        "approved_forms": ["tablet", "film-coated tablet"],
+        "major_brands": ["Lipitor", "Storvas", "Atorva"],
+        "local_manufacturers": ["Gulf Pharmaceutical Industries (Julphar)"],
+        "imported": true,
+        "market_gap": ["oral suspension", "combination with ezetimibe locally"],
+        "dominant_manufacturer": "Pfizer (Lipitor)"
+      },
+      "omeprazole": {
+        "approved_forms": ["capsule", "tablet", "injection"],
+        "major_brands": ["Losec", "Prilosec", "Omed"],
+        "local_manufacturers": ["Gulf Pharmaceutical Industries (Julphar)"],
+        "imported": true,
+        "market_gap": ["oral suspension for pediatrics", "dispersible tablet"],
+        "dominant_manufacturer": "AstraZeneca (Losec)"
+      },
+      "lisinopril": {
+        "approved_forms": ["tablet"],
+        "major_brands": ["Zestril", "Prinivil", "Lisinop"],
+        "local_manufacturers": ["Gulf Pharmaceutical Industries (Julphar)"],
+        "imported": true,
+        "market_gap": ["oral solution", "combination with HCTZ locally manufactured"],
+        "dominant_manufacturer": "AstraZeneca (Zestril)"
+      }
+    }
+  },
+  "Saudi Arabia": {
+    "regulatory_authority": "Saudi Food and Drug Authority (SFDA)",
+    "registration_body": "Drug Registration Department, SFDA",
+    "market_size_usd_billion": 9.2,
+    "population_million": 35.0,
+    "healthcare_expenditure_gdp_pct": 6.2,
+    "drugs": {
+      "metformin": {
+        "approved_forms": ["tablet", "extended release tablet", "oral solution"],
+        "major_brands": ["Glucophage", "Glucored", "Metforal"],
+        "local_manufacturers": ["Tabuk Pharmaceutical", "Saudi Pharmaceutical Industries (SPIMACO)", "Riyadh Pharma"],
+        "imported": true,
+        "market_gap": ["sustained release capsule", "dispersible tablet for elderly"],
+        "dominant_manufacturer": "Merck (Glucophage)"
+      },
+      "amlodipine": {
+        "approved_forms": ["tablet", "film-coated tablet"],
+        "major_brands": ["Norvasc", "Amlopin", "Amlodac"],
+        "local_manufacturers": ["Tabuk Pharmaceutical", "SPIMACO"],
+        "imported": true,
+        "market_gap": ["oral solution for pediatrics", "transdermal patch"],
+        "dominant_manufacturer": "Pfizer (Norvasc)"
+      },
+      "atorvastatin": {
+        "approved_forms": ["tablet"],
+        "major_brands": ["Lipitor", "Torvast", "Atorvast"],
+        "local_manufacturers": ["Tabuk Pharmaceutical", "Riyadh Pharma"],
+        "imported": true,
+        "market_gap": ["oral suspension", "low-dose statin combination"],
+        "dominant_manufacturer": "Pfizer (Lipitor)"
+      },
+      "omeprazole": {
+        "approved_forms": ["capsule", "tablet", "injection", "oral suspension"],
+        "major_brands": ["Losec", "Ultop", "Omed"],
+        "local_manufacturers": ["SPIMACO", "Tabuk Pharmaceutical"],
+        "imported": true,
+        "market_gap": ["pediatric dispersible tablet"],
+        "dominant_manufacturer": "AstraZeneca (Losec)"
+      },
+      "lisinopril": {
+        "approved_forms": ["tablet"],
+        "major_brands": ["Zestril", "Prinivil", "Listril"],
+        "local_manufacturers": ["Tabuk Pharmaceutical"],
+        "imported": true,
+        "market_gap": ["oral solution for renal patients", "combination product with diuretic locally"],
+        "dominant_manufacturer": "AstraZeneca (Zestril)"
+      }
+    }
+  },
+  "Qatar": {
+    "regulatory_authority": "Ministry of Public Health (MOPH)",
+    "registration_body": "Pharmaceutical Affairs, MOPH",
+    "market_size_usd_billion": 1.1,
+    "population_million": 2.9,
+    "healthcare_expenditure_gdp_pct": 4.0,
+    "drugs": {
+      "metformin": {
+        "approved_forms": ["tablet", "extended release tablet"],
+        "major_brands": ["Glucophage", "Metforal"],
+        "local_manufacturers": [],
+        "imported": true,
+        "market_gap": ["oral solution", "local manufacturing opportunity", "dispersible tablet"],
+        "dominant_manufacturer": "Merck (Glucophage)"
+      },
+      "amlodipine": {
+        "approved_forms": ["tablet"],
+        "major_brands": ["Norvasc", "Amlopin"],
+        "local_manufacturers": [],
+        "imported": true,
+        "market_gap": ["oral solution", "extended release combination", "local manufacturing"],
+        "dominant_manufacturer": "Pfizer (Norvasc)"
+      },
+      "atorvastatin": {
+        "approved_forms": ["tablet"],
+        "major_brands": ["Lipitor", "Storvas"],
+        "local_manufacturers": [],
+        "imported": true,
+        "market_gap": ["oral suspension", "combination product"],
+        "dominant_manufacturer": "Pfizer (Lipitor)"
+      },
+      "omeprazole": {
+        "approved_forms": ["capsule", "injection"],
+        "major_brands": ["Losec", "Omed"],
+        "local_manufacturers": [],
+        "imported": true,
+        "market_gap": ["oral suspension", "dispersible tablet", "local manufacturing"],
+        "dominant_manufacturer": "AstraZeneca (Losec)"
+      },
+      "lisinopril": {
+        "approved_forms": ["tablet"],
+        "major_brands": ["Zestril"],
+        "local_manufacturers": [],
+        "imported": true,
+        "market_gap": ["oral solution", "combination product", "local supply chain"],
+        "dominant_manufacturer": "AstraZeneca (Zestril)"
+      }
+    }
+  },
+  "Kuwait": {
+    "regulatory_authority": "Kuwait Drug and Food Control Authority (KDFCA)",
+    "registration_body": "Pharmaceutical Registration Department, KDFCA",
+    "market_size_usd_billion": 1.5,
+    "population_million": 4.3,
+    "healthcare_expenditure_gdp_pct": 4.5,
+    "drugs": {
+      "metformin": {
+        "approved_forms": ["tablet", "extended release tablet"],
+        "major_brands": ["Glucophage", "Metforal"],
+        "local_manufacturers": ["Kuwait Drug Company (KDC)"],
+        "imported": true,
+        "market_gap": ["oral solution", "dispersible tablet"],
+        "dominant_manufacturer": "Merck (Glucophage)"
+      },
+      "amlodipine": {
+        "approved_forms": ["tablet"],
+        "major_brands": ["Norvasc", "Amlopin"],
+        "local_manufacturers": ["Kuwait Drug Company (KDC)"],
+        "imported": true,
+        "market_gap": ["oral solution", "transdermal patch"],
+        "dominant_manufacturer": "Pfizer (Norvasc)"
+      },
+      "atorvastatin": {
+        "approved_forms": ["tablet"],
+        "major_brands": ["Lipitor", "Storvas"],
+        "local_manufacturers": [],
+        "imported": true,
+        "market_gap": ["oral suspension", "combination statin"],
+        "dominant_manufacturer": "Pfizer (Lipitor)"
+      },
+      "omeprazole": {
+        "approved_forms": ["capsule", "injection"],
+        "major_brands": ["Losec", "Omed"],
+        "local_manufacturers": ["Kuwait Drug Company (KDC)"],
+        "imported": true,
+        "market_gap": ["oral suspension", "pediatric formulation"],
+        "dominant_manufacturer": "AstraZeneca (Losec)"
+      },
+      "lisinopril": {
+        "approved_forms": ["tablet"],
+        "major_brands": ["Zestril", "Prinivil"],
+        "local_manufacturers": [],
+        "imported": true,
+        "market_gap": ["oral solution", "combination product locally"],
+        "dominant_manufacturer": "AstraZeneca (Zestril)"
+      }
+    }
+  },
+  "Bahrain": {
+    "regulatory_authority": "National Health Regulatory Authority (NHRA)",
+    "registration_body": "Directorate of Pharmaceutical Affairs, NHRA",
+    "market_size_usd_billion": 0.5,
+    "population_million": 1.5,
+    "healthcare_expenditure_gdp_pct": 4.2,
+    "drugs": {
+      "metformin": {
+        "approved_forms": ["tablet"],
+        "major_brands": ["Glucophage", "Metforal"],
+        "local_manufacturers": [],
+        "imported": true,
+        "market_gap": ["extended release tablet", "oral solution", "full generics portfolio"],
+        "dominant_manufacturer": "Merck (Glucophage)"
+      },
+      "amlodipine": {
+        "approved_forms": ["tablet"],
+        "major_brands": ["Norvasc"],
+        "local_manufacturers": [],
+        "imported": true,
+        "market_gap": ["generic alternatives locally", "oral solution"],
+        "dominant_manufacturer": "Pfizer (Norvasc)"
+      },
+      "atorvastatin": {
+        "approved_forms": ["tablet"],
+        "major_brands": ["Lipitor", "Storvas"],
+        "local_manufacturers": [],
+        "imported": true,
+        "market_gap": ["generic alternatives", "low-dose formulation"],
+        "dominant_manufacturer": "Pfizer (Lipitor)"
+      },
+      "omeprazole": {
+        "approved_forms": ["capsule"],
+        "major_brands": ["Losec"],
+        "local_manufacturers": [],
+        "imported": true,
+        "market_gap": ["injection form", "oral suspension", "generic options"],
+        "dominant_manufacturer": "AstraZeneca (Losec)"
+      },
+      "lisinopril": {
+        "approved_forms": ["tablet"],
+        "major_brands": ["Zestril"],
+        "local_manufacturers": [],
+        "imported": true,
+        "market_gap": ["generic options", "oral solution"],
+        "dominant_manufacturer": "AstraZeneca (Zestril)"
+      }
+    }
+  },
+  "Oman": {
+    "regulatory_authority": "Oman Pharmaceutical and Medical Equipment Department (OPMED)",
+    "registration_body": "Drug Registration Section, Ministry of Health Oman",
+    "market_size_usd_billion": 1.2,
+    "population_million": 4.5,
+    "healthcare_expenditure_gdp_pct": 4.1,
+    "drugs": {
+      "metformin": {
+        "approved_forms": ["tablet", "extended release tablet"],
+        "major_brands": ["Glucophage", "Metforal", "Dimeta"],
+        "local_manufacturers": ["Oman Pharmaceutical Products (OPP)"],
+        "imported": true,
+        "market_gap": ["oral solution", "dispersible tablet"],
+        "dominant_manufacturer": "Merck (Glucophage)"
+      },
+      "amlodipine": {
+        "approved_forms": ["tablet"],
+        "major_brands": ["Norvasc", "Amlopin"],
+        "local_manufacturers": ["Oman Pharmaceutical Products (OPP)"],
+        "imported": true,
+        "market_gap": ["oral solution for pediatrics", "combination ER product"],
+        "dominant_manufacturer": "Pfizer (Norvasc)"
+      },
+      "atorvastatin": {
+        "approved_forms": ["tablet"],
+        "major_brands": ["Lipitor", "Storvas"],
+        "local_manufacturers": ["Oman Pharmaceutical Products (OPP)"],
+        "imported": true,
+        "market_gap": ["oral suspension", "low-dose generic"],
+        "dominant_manufacturer": "Pfizer (Lipitor)"
+      },
+      "omeprazole": {
+        "approved_forms": ["capsule", "injection"],
+        "major_brands": ["Losec", "Omed"],
+        "local_manufacturers": ["Oman Pharmaceutical Products (OPP)"],
+        "imported": true,
+        "market_gap": ["oral suspension", "pediatric formulation"],
+        "dominant_manufacturer": "AstraZeneca (Losec)"
+      },
+      "lisinopril": {
+        "approved_forms": ["tablet"],
+        "major_brands": ["Zestril", "Prinivil"],
+        "local_manufacturers": [],
+        "imported": true,
+        "market_gap": ["oral solution", "combination product"],
+        "dominant_manufacturer": "AstraZeneca (Zestril)"
+      }
+    }
+  }
+}
