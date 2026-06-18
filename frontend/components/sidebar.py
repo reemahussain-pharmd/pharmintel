@@ -9,6 +9,15 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# On Streamlit Community Cloud, secrets are in st.secrets (not os.environ).
+# This bridge makes os.getenv() work identically on local (.env) and cloud (secrets).
+try:
+    for _k, _v in st.secrets.items():
+        if isinstance(_v, str) and _k not in os.environ:
+            os.environ[_k] = _v
+except Exception:
+    pass
+
 BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8000")
 
 
