@@ -46,7 +46,7 @@ async def get_market_intelligence(drug_name: str) -> dict:
         "found_in_database": drug_entry is not None,
         "regulatory_authority": market_data.get("regulatory_authority", "CDSCO"),
         "registration_body": market_data.get("registration_body", "DCGI"),
-        "market_size_usd_billion": market_data.get("market_size_usd_billion", 50.0),
+        "india_pharma_market_context": "India pharmaceutical market ~$50B (IBEF 2024); drug-specific segment varies",
         "market_characteristics": market_data.get("market_characteristics", []),
     }
 
