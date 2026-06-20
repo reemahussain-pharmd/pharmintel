@@ -98,7 +98,7 @@ def render_sidebar():
 
         # ── API Status ────────────────────────────────────────────────────────
         try:
-            resp = requests.get(f"{BACKEND_URL}/", timeout=2)
+            resp = requests.get(f"{BACKEND_URL}/", timeout=4)
             if resp.status_code == 200:
                 st.markdown(
                     "<div style='background:#EAFAF1; border-radius:6px; padding:5px 10px; "
@@ -113,11 +113,11 @@ def render_sidebar():
                 )
         except Exception:
             st.markdown(
-                "<div style='background:#FDEDEC; border-radius:6px; padding:5px 10px; "
-                "font-size:0.8rem; color:#E74C3C; font-weight:600;'>● API Offline</div>",
+                "<div style='background:#FFF3CD; border-radius:6px; padding:5px 10px; "
+                "font-size:0.8rem; color:#856404; font-weight:600;'>⏳ API Waking Up</div>",
                 unsafe_allow_html=True,
             )
-            st.caption(f"Start: uvicorn backend.main:app --reload")
+            st.caption("Backend starting — refresh in 30s")
 
         st.divider()
 

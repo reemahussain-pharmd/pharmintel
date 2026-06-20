@@ -55,21 +55,47 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# ── API Status ────────────────────────────────────────────────────────────────
-try:
-    resp = requests.get(f"{BACKEND_URL}/", timeout=3)
-    if resp.status_code == 200:
-        data = resp.json()
-        st.success(f"Backend connected — {data.get('message', 'PharmIntel API v1 running')}")
-    else:
-        st.error(f"Backend returned status {resp.status_code}")
-except requests.exceptions.ConnectionError:
-    st.error(
-        f"Cannot connect to backend at `{BACKEND_URL}`. "
-        "Run this in your terminal: `uvicorn backend.main:app --reload`"
+# ── API Status (with cold-start wakeup) ──────────────────────────────────────
+def _check_backend(timeout: int) -> tuple[bool, str]:
+    try:
+        resp = requests.get(f"{BACKEND_URL}/", timeout=timeout)
+        if resp.status_code == 200:
+            return True, resp.json().get("message", "PharmIntel API running")
+        return False, f"Status {resp.status_code}"
+    except requests.exceptions.Timeout:
+        return False, "timeout"
+    except requests.exceptions.ConnectionError:
+        return False, "offline"
+    except Exception as e:
+        return False, str(e)
+
+# Fast check first (2s) — if already warm this completes immediately
+ok, msg = _check_backend(timeout=2)
+
+if ok:
+    st.success(f"Backend connected — {msg}")
+else:
+    # Render free tier cold start: show wakeup banner and retry with long timeout
+    wakeup_placeholder = st.empty()
+    wakeup_placeholder.markdown(
+        "<div style='background:#FFF3CD;border:1px solid #FFEAA7;border-radius:8px;"
+        "padding:12px 16px;color:#856404;'>"
+        "⏳ <b>Backend is waking up</b> — Render free tier sleeps after 15 min of inactivity. "
+        "This takes <b>20–40 seconds</b> on first visit. Please wait…</div>",
+        unsafe_allow_html=True,
     )
-except Exception as e:
-    st.error(f"Connection error: {e}")
+    with st.spinner("Waking up backend server…"):
+        ok2, msg2 = _check_backend(timeout=55)
+
+    wakeup_placeholder.empty()
+    if ok2:
+        st.success(f"Backend connected — {msg2}")
+    else:
+        st.warning(
+            "Backend is still starting up. "
+            "**Refresh this page in 30 seconds** — it will be ready. "
+            "This only happens on the very first visit after inactivity."
+        )
 
 st.divider()
 
@@ -82,7 +108,7 @@ steps = [
     ("💊", "Score",       "Rule engine rates each dosage form 0–100 (no AI guessing)"),
     ("🤖", "Interpret",   "Gemini AI writes professional reasoning using RAG context"),
     ("📊", "Market",      "Indian market gaps, brands & CDSCO regulatory data"),
-    ("📄", "Report",      "10-section consulting-grade PDF — instant download"),
+    ("📄", "Report",      "12-section consulting-grade PDF — instant download"),
 ]
 
 cols = st.columns(len(steps))
