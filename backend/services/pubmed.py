@@ -12,7 +12,9 @@ from backend.models.schemas import Paper, SearchResponse
 load_dotenv()
 
 # NCBI requires an email so they can contact you if your script causes issues
-Entrez.email = os.getenv("PUBMED_EMAIL", "reemahussain2097@gmail.com")
+Entrez.email = os.getenv("PUBMED_EMAIL")
+if not Entrez.email:
+    raise ValueError("PUBMED_EMAIL must be set in your .env file")
 
 
 async def search_pubmed(drug_name: str, max_results: int = 10) -> SearchResponse:

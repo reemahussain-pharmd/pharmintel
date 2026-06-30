@@ -4,6 +4,10 @@
 # ===== SECRETS - NEVER COMMIT =====
 .env
 *.env
+*.pem
+*.key
+secrets.toml
+*_secrets.toml
 
 # ===== Python =====
 __pycache__/
@@ -40,6 +44,8 @@ Thumbs.db
 reports/
 *.pdf
 *.log
+*.sqlite3
+*.db
 
 # ===== spaCy Models (large, installed via command) =====
 en_core_web_sm/
